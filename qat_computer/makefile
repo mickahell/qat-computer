@@ -1,6 +1,4 @@
 GO111MODULE?=on
-PROJECT_NAME?=qatcomputer
-PROJECT_PATH?=QatComputer
 
 setting-prepare:
 	go mod tidy
@@ -27,15 +25,3 @@ build-app: setting-prepare
 
 install-app: build-app
 	go install
-
-docker-build:
-	docker build . -f docker/Dockerfile --tag $(PROJECT_NAME):latest
-
-docker-start:
-	docker run --rm \
-		--name $(PROJECT_NAME) \
-		-v $(PWD)/conf:/etc/$(PROJECT_PATH)/conf \
-		-e PASS_DB=${PASS_DB} -e TOKEN_API_TEST=${TOKEN_API_TEST} \
-		-p 8080:8080 \
-		$(PROJECT_NAME):latest \
-		-conf=/etc/$(PROJECT_PATH)/conf/conf_docker.yaml

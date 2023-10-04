@@ -1,4 +1,4 @@
-module cat-computer
+module qat-computer
 
 go 1.19
 
@@ -12,3 +12,13 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
+
+// Packages system
+
+replace qat-computer/docs => ../docs
+
+replace qat-computer/helpers => ../helpers
+
+replace qat-computer/logger => ../logger
+
+replace qat-computer/utils => ../utils

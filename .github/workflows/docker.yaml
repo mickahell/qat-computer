@@ -1,0 +1,49 @@
+name: Docker image
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+#    tags:
+#      - '*'
+
+env:
+  IMAGE_NAME: "qat-computer"
+
+jobs:
+  docker:
+    name: Build image
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get params
+        id: params
+        run: |
+          echo "version_tag=$(cat VERSION.txt)-master" >> "$GITHUB_OUTPUT"
+          echo "IMAGE_NAME_UP=${{ env.IMAGE_NAME }}-dev" >> "$GITHUB_OUTPUT"
+          echo "REGISTRY_ADD=ghcr.io/${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
+      - name: Get image name
+        id: image-name
+        run: |
+          IMAGE_ID=${{ steps.params.outputs.REGISTRY_ADD }}/${{ steps.params.outputs.IMAGE_NAME_UP }}
+          echo "IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')" >> "$GITHUB_OUTPUT"
+
+      - name: Build image
+        run: |
+          docker build . --file docker/Dockerfile \
+            --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }}
+      - name: Tag image
+        run: |
+          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }} \
+            ${{ steps.image-name.outputs.IMAGE_ID }}:${{ steps.params.outputs.version_tag }}
+
+      - name: Log in to github registry
+        run: |
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Push image to github registry
+        run: |
+          docker push ${{ steps.image-name.outputs.IMAGE_ID }} --all-tags
