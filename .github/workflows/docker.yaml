@@ -46,7 +46,7 @@ jobs:
             --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest
       - name: Tag image
         run: |
-          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest \
+          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }} \
             ${{ steps.image-name.outputs.IMAGE_ID }}:${{ steps.params.outputs.version_tag }}
 
       - name: Log in to GitHub registry
