@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"cat-computer/helpers"
+	"qat-computer/helpers"
 )
 
 type Logger struct {

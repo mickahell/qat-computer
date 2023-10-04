@@ -1,8 +1,8 @@
 package utils
 
 import (
-	"cat-computer/logger"
 	"encoding/json"
+	"qat-computer/logger"
 )
 
 func ToJSON(obj interface{}) string {

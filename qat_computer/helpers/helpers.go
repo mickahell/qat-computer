@@ -2,9 +2,7 @@ package helpers
 
 import (
 	"fmt"
-	"log"
 	"os"
-	"path/filepath"
 
 	"gopkg.in/yaml.v2"
 )
@@ -21,15 +19,10 @@ var Confpathflag string
 var LogLevelflag int
 
 func InitFile() {
-	path, err := os.Getwd()
-	if err != nil {
-		log.Fatalln("Abs path doesn't exist !")
-	}
-
 	AppConfig.Loglevel = LogLevelflag
 
 	if Confpathflag != "" {
-		AppConfig.ConfPath = filepath.Join(path, Confpathflag)
+		AppConfig.ConfPath = Confpathflag
 		ReadConfig()
 	}
 }

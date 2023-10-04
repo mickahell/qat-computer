@@ -3,7 +3,7 @@ package docs
 import (
 	_ "embed"
 
-	"cat-computer/logger"
+	"qat-computer/logger"
 )
 
 //go:embed VERSION.txt

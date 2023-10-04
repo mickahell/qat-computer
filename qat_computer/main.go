@@ -5,11 +5,11 @@ import (
 	"os"
 	"sync"
 
-	"cat-computer/logger"
-	"cat-computer/utils"
+	"qat-computer/logger"
+	"qat-computer/utils"
 
-	"cat-computer/docs"
-	"cat-computer/helpers"
+	"qat-computer/docs"
+	"qat-computer/helpers"
 )
 
 var Versionflag bool
