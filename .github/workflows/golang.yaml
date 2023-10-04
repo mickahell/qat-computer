@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'qat_computer/**'
+      - '.github/workflows/**'
   workflow_dispatch:
 
 env:
