@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  GO_DIR: src
+  GO_DIR: qat_computer
   GO_VERSION: 1.19
 
 jobs:
