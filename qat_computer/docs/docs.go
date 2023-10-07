@@ -36,7 +36,7 @@ func GetAppName() string {
 }
 
 func GetConfigPathMan() string {
-	man := "Relative path for the configuration yaml file.\n" +
+	man := "Path for the configuration yaml file.\n" +
 		"The configuration file can contains any options presented below."
 
 	return man
@@ -53,7 +53,7 @@ func GetLogLevelMan() string {
 }
 
 func GetComputePathMan() string {
-	man := "Relative path for the project to compute yaml file"
+	man := "Path for the project to compute yaml file"
 
 	return man
 }
