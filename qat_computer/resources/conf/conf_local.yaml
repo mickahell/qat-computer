@@ -3,4 +3,5 @@
 ## 1 : Warning
 ## 2 : Error --> Always
 ## 3 : Critical --> Always
-loglevel: 0
+loglevel: 2
+computepath: "resources/compute/simple_repo"

@@ -28,16 +28,22 @@ func startoptions() {
 		"print config.",
 	)
 
-	flag.StringVar(
-		&helpers.Confpathflag,
-		"conf", "",
-		docs.GetConfigPathMan(),
-	)
-
 	flag.IntVar(
 		&helpers.LogLevelflag,
 		"log-level", 0,
 		docs.GetLogLevelMan(),
+	)
+
+	flag.StringVar(
+		&helpers.ComputePathflag,
+		"compute", "",
+		docs.GetComputePathMan(),
+	)
+
+	flag.StringVar(
+		&helpers.ConfPathflag,
+		"conf", "",
+		docs.GetConfigPathMan(),
 	)
 
 	flag.Parse()

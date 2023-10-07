@@ -8,21 +8,24 @@ import (
 )
 
 type Cfg struct {
-	Loglevel int `yaml:"loglevel"`
-	ConfPath string
+	ConfPath    string
+	LogLevel    int    `yaml:"loglevel"`
+	ComputePath string `yaml:"computepath"`
 }
 
 var AppConfig Cfg
 
 // flags
-var Confpathflag string
+var ConfPathflag string
+var ComputePathflag string
 var LogLevelflag int
 
 func InitFile() {
-	AppConfig.Loglevel = LogLevelflag
+	AppConfig.LogLevel = LogLevelflag
+	AppConfig.ComputePath = ComputePathflag
 
-	if Confpathflag != "" {
-		AppConfig.ConfPath = Confpathflag
+	if ConfPathflag != "" {
+		AppConfig.ConfPath = ConfPathflag
 		ReadConfig()
 	}
 }

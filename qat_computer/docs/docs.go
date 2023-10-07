@@ -51,3 +51,9 @@ func GetLogLevelMan() string {
 
 	return man
 }
+
+func GetComputePathMan() string {
+	man := "Relative path for the project to compute yaml file"
+
+	return man
+}
