@@ -12,8 +12,7 @@ env:
   GO_VERSION: 1.19
 
 jobs:
-  golangci:
-    name: lint
+  style:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v3
@@ -34,7 +33,6 @@ jobs:
           fi
 
   unittests:
-    name: go_test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
