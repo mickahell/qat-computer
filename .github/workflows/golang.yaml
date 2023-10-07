@@ -12,8 +12,7 @@ env:
   GO_VERSION: 1.19
 
 jobs:
-  golangci:
-    name: lint
+  style:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-go@v3
@@ -34,7 +33,6 @@ jobs:
           fi
 
   unittests:
-    name: go_test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -62,5 +60,5 @@ jobs:
       - name: yaml-lint
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: ${{env.GO_DIR}}/conf
+          file_or_dir: ${{env.GO_DIR}}/resources/conf
           config_data: "{extends: default, rules: {line-length: disable}}"

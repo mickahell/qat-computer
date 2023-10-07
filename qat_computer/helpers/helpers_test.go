@@ -18,7 +18,7 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	Confpathflag = "../conf/conf_local.yaml"
+	ConfPathflag = "../resources/conf/conf_local.yaml"
 	InitFile()
 }
 
@@ -31,9 +31,9 @@ func TestInitFile(t *testing.T) {
 
 func TestReadconfig(t *testing.T) {
 
-	loglevel := TheAppConfig().Loglevel
+	loglevel := TheAppConfig().LogLevel
 
-	assert.Equal(t, 0, loglevel)
+	assert.Equal(t, 2, loglevel)
 }
 
 func TestTheAppConfig(t *testing.T) {

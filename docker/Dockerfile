@@ -36,6 +36,7 @@ RUN adduser --uid 1000 --disabled-password --shell /bin/bash user
 USER user
 
 VOLUME /etc/qat-computer/conf/
+VOLUME /etc/qat-computer/compute/
 
 WORKDIR /usr/local/bin/
 

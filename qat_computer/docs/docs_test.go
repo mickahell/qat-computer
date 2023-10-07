@@ -56,3 +56,13 @@ func TestGetLogLevelMan(t *testing.T) {
 		log.Fatalln("man log level is not a string !")
 	}
 }
+
+func TestGetComputePathMan(t *testing.T) {
+	var got interface{} = GetComputePathMan()
+
+	_, ok := got.(string)
+
+	if ok == false {
+		log.Fatalln("man compute path is not a string !")
+	}
+}

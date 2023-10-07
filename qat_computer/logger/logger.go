@@ -28,7 +28,7 @@ const NoneColor = "\033[0m"
 var mylog Logger
 
 func (log *Logger) LogInit() {
-	log.loggerLevel = helpers.TheAppConfig().Loglevel
+	log.loggerLevel = helpers.TheAppConfig().LogLevel
 }
 
 func (log *Logger) LogDraw(drawing string) {
