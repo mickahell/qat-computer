@@ -57,3 +57,15 @@ func GetComputePathMan() string {
 
 	return man
 }
+
+func GetPythonVerMan() string {
+	man := "Version of python to use."
+
+	return man
+}
+
+func GetDebianPkgMan() string {
+	man := "List of debian package to install."
+
+	return man
+}

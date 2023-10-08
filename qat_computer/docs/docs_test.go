@@ -66,3 +66,13 @@ func TestGetComputePathMan(t *testing.T) {
 		log.Fatalln("man compute path is not a string !")
 	}
 }
+
+func TestGetPythonVerMan(t *testing.T) {
+	var got interface{} = GetComputePathMan()
+
+	_, ok := got.(string)
+
+	if ok == false {
+		log.Fatalln("man python version is not a string !")
+	}
+}

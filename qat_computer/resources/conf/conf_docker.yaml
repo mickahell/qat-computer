@@ -3,5 +3,8 @@
 ## 1 : Warning
 ## 2 : Error --> Always
 ## 3 : Critical --> Always
-loglevel: 2
-computepath: "/etc/qat-computer/conf/simple_repo"
+loglevel: 0
+debian_packages:
+  - "jq"
+python_version: "python3.10"
+computepath: "/etc/qat-computer/compute/simple_python_repository/main.py"

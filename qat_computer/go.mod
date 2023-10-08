@@ -21,4 +21,6 @@ replace qat-computer/helpers => ../helpers
 
 replace qat-computer/logger => ../logger
 
+replace qat-computer/on_go => ../on_go
+
 replace qat-computer/utils => ../utils
