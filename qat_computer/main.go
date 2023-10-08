@@ -6,6 +6,7 @@ import (
 	"sync"
 
 	"qat-computer/logger"
+	"qat-computer/on_go"
 	"qat-computer/utils"
 
 	"qat-computer/docs"
@@ -38,6 +39,18 @@ func startoptions() {
 		&helpers.ComputePathflag,
 		"compute", "",
 		docs.GetComputePathMan(),
+	)
+
+	flag.StringVar(
+		&helpers.PythonVerflag,
+		"python", "python3.10",
+		docs.GetPythonVerMan(),
+	)
+
+	flag.StringVar(
+		&helpers.DebianPkgflag,
+		"debian-pkg", "",
+		docs.GetDebianPkgMan(),
 	)
 
 	flag.StringVar(
@@ -81,9 +94,11 @@ func main() {
 		// run func
 		// logger.GetLogger().
 		//	LogCritical("main", "listen cas error", cocas.GetCasServer().ListenAndServe())
+		on_go.ExecSummary()
 		wg.Done()
 	}()
 
 	// wait until WaitGroup is done
 	wg.Wait()
+	logger.GetLogger().LogDraw("####################\n" + "# End.")
 }

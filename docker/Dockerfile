@@ -16,7 +16,7 @@ WORKDIR /src/
 RUN make build-app
 
 # Runner stage
-FROM alpine:3.16 as runner
+FROM ubuntu:22.04 as runner
 
 ENV PROJECT_NAME=qat-computer
 
@@ -32,8 +32,10 @@ LABEL org.opencontainers.image.title="${PROJECT_NAME}" \
 
 COPY --from=builder /src/qat-computer /usr/local/bin/qat-computer
 
-RUN adduser --uid 1000 --disabled-password --shell /bin/bash user
-USER user
+RUN apt update -yq
+RUN apt dist-upgrade -yq
+RUN apt install -yq python3-pip \
+&& apt clean -y
 
 VOLUME /etc/qat-computer/conf/
 VOLUME /etc/qat-computer/compute/

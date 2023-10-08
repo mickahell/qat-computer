@@ -2,10 +2,23 @@
 import os
 from unittest import TestCase
 from testcontainers.compose import DockerCompose
+from testcontainers.core.waiting_utils import wait_for_logs
 
 
-class TestContainer(TestCase):
-    """TestContainer."""
+def call_container(
+    filepath: str, waitfor: str = "", build: bool = False
+) -> DockerCompose:
+    """Create compose container function."""
+    with DockerCompose(
+        filepath=filepath, compose_file_name="docker-compose.yml", build=build
+    ) as compose:
+        wait_for_logs(compose, waitfor)
+        stdout, _ = compose.get_logs()
+    return stdout
+
+
+class TestBasicContainer(TestCase):
+    """TestBasicContainer."""
 
     def setUp(self) -> None:
         """SetUp container object."""
@@ -15,12 +28,7 @@ class TestContainer(TestCase):
     def test_version_endpoint(self):
         """Test version endpoint."""
         os.environ["CMD"] = "-version"
-        with DockerCompose(
-            filepath=os.path.join(self.current_directory, "../"),
-            compose_file_name="docker-compose.yml",
-            build=self.build_img,
-        ) as compose:
-            stdout, _ = compose.get_logs()
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         with open(
             os.path.join(self.current_directory, "../VERSION.txt"),
@@ -32,12 +40,7 @@ class TestContainer(TestCase):
     def test_conf_endpoint(self):
         """Test conf endpoint."""
         os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml -show-config"
-        with DockerCompose(
-            filepath=os.path.join(self.current_directory, "../"),
-            compose_file_name="docker-compose.yml",
-            build=self.build_img,
-        ) as compose:
-            stdout, _ = compose.get_logs()
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         self.assertTrue(
             b'"ConfPath":"/etc/qat-computer/conf/conf_docker.yaml"' in stdout
