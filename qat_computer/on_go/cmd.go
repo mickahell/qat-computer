@@ -7,7 +7,14 @@ import (
 	"strings"
 )
 
-func BashCMD(cmd string) string {
+type Cmds struct {
+	Stdout string
+	Stderr error
+}
+
+var Cmd Cmds
+
+func BashCMD(cmd string) *Cmds {
 
 	args := strings.Fields(cmd)
 	to_run := exec.Command(args[0], args[1:]...)
@@ -15,8 +22,11 @@ func BashCMD(cmd string) string {
 
 	if err != nil {
 		error_send := errors.New(string(stdout) + "\n" + err.Error())
-		logger.GetLogger().LogCritical("on_go", "error with cmd : "+cmd, error_send)
+		logger.GetLogger().LogCritical("on_go", "error with cmd : "+cmd, error_send, false)
 	}
 
-	return strings.TrimSuffix(string(stdout[:]), "\n")
+	Cmd.Stdout = strings.TrimSuffix(string(stdout[:]), "\n")
+	Cmd.Stderr = err
+
+	return &Cmd
 }

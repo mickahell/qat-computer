@@ -29,7 +29,9 @@ func InitFile() {
 	AppConfig.LogLevel = LogLevelflag
 	AppConfig.ComputePath = ComputePathflag
 	AppConfig.PythonVer = PythonVerflag
-	AppConfig.DebianPkg = strings.Split(DebianPkgflag, " ")
+	if DebianPkgflag != "" {
+		AppConfig.DebianPkg = strings.Split(DebianPkgflag, " ")
+	}
 
 	if ConfPathflag != "" {
 		AppConfig.ConfPath = ConfPathflag

@@ -43,7 +43,7 @@ func startoptions() {
 
 	flag.StringVar(
 		&helpers.PythonVerflag,
-		"python", "python3.10",
+		"python-version", "python3.10",
 		docs.GetPythonVerMan(),
 	)
 

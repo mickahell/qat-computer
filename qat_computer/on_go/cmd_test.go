@@ -15,10 +15,20 @@ func TestMain(m *testing.M) {
 	os.Exit(exitVal)
 }
 
-func TestBashCMD(t *testing.T) {
-	var got string = BashCMD("echo toto")
+func TestStructCMDs(t *testing.T) {
+	var got interface{} = BashCMD("echo toto")
 
-	if got != "toto" {
+	_, ok := got.(*Cmds)
+
+	if ok == false {
+		log.Fatalln("got is not a Cmds !")
+	}
+}
+
+func TestBashCMD(t *testing.T) {
+	var got *Cmds = BashCMD("echo toto")
+
+	if got.Stdout != "toto" {
 		log.Fatalf("got is not what i wanted !")
 	}
 }
