@@ -100,4 +100,5 @@ func main() {
 
 	// wait until WaitGroup is done
 	wg.Wait()
+	logger.GetLogger().LogDraw("####################\n" + "# End.")
 }

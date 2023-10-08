@@ -1,6 +1,7 @@
 """Tests for on go container."""
 import os
 from unittest import TestCase
+from testcontainers.compose import DockerCompose
 
 from .test_basic_container import call_container
 
@@ -16,9 +17,8 @@ class TestOnGoContainer(TestCase):
     def test_full_endpoint(self):
         """Test full endpoint."""
         os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml"
-        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"), waitfor="# End")
 
         self.assertTrue(b"ERROR" not in stdout)
         self.assertTrue(b"WARNING" not in stdout)
-        print("stdout : ", stdout)
-        self.assertTrue(b'message="4.0\n"' in stdout)
+        self.assertTrue(b'message="4.0"' in stdout)

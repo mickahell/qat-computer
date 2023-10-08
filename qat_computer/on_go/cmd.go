@@ -18,5 +18,5 @@ func BashCMD(cmd string) string {
 		logger.GetLogger().LogCritical("on_go", "error with cmd : "+cmd, error_send)
 	}
 
-	return string(stdout[:])
+	return strings.TrimSuffix(string(stdout[:]), "\n")
 }

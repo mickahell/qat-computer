@@ -2,15 +2,17 @@
 import os
 from unittest import TestCase
 from testcontainers.compose import DockerCompose
+from testcontainers.core.waiting_utils import wait_for_logs
 
 
-def call_container(filepath: str, build: bool = False) -> DockerCompose:
+def call_container(filepath: str, waitfor: str = "", build: bool = False) -> DockerCompose:
     """Create compose container function."""
     with DockerCompose(
         filepath=filepath, compose_file_name="docker-compose.yml", build=build
     ) as compose:
+        wait_for_logs(compose, waitfor)
         stdout, _ = compose.get_logs()
-        return stdout
+    return stdout
 
 
 class TestBasicContainer(TestCase):

@@ -18,7 +18,7 @@ func TestMain(m *testing.M) {
 func TestBashCMD(t *testing.T) {
 	var got string = BashCMD("echo toto")
 
-	if got != "toto\n" {
+	if got != "toto" {
 		log.Fatalf("got is not what i wanted !")
 	}
 }
