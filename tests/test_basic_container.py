@@ -27,6 +27,7 @@ class TestBasicContainer(TestCase):
 
     def test_version_endpoint(self):
         """Test version endpoint."""
+        os.environ["SUBCMD"] = ""
         os.environ["CMD"] = "-version"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
@@ -39,6 +40,7 @@ class TestBasicContainer(TestCase):
 
     def test_conf_endpoint(self):
         """Test conf endpoint."""
+        os.environ["SUBCMD"] = "compute"
         os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml -show-config"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 

@@ -2,6 +2,9 @@ package docs
 
 import (
 	_ "embed"
+	"flag"
+	"fmt"
+	"os"
 
 	"qat-computer/logger"
 )
@@ -10,6 +13,7 @@ import (
 var version_file string
 var app_name string = "Qat Computer"
 
+const ComputeStr = "compute"
 const draw = `
   #####                   #####
  #     #   ##   #####    #     #  ####  #    # #####  #    # ##### ###### #####
@@ -33,6 +37,18 @@ func GetVersion() string {
 
 func GetAppName() string {
 	return app_name
+}
+
+func GetUsageMan() {
+	fmt.Printf("Usage: %s [OPTIONS] argument ...\n", os.Args[0])
+	flag.PrintDefaults()
+
+	switch os.Args[0] {
+	case ComputeStr:
+		// do nothing aka pass
+	default:
+		fmt.Printf("Sub-commands available :\n %s \n", ComputeStr)
+	}
 }
 
 func GetConfigPathMan() string {
