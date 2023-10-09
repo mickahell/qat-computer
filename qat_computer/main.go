@@ -1,10 +1,10 @@
 package main
 
 import (
-	"flag"
 	"os"
 	"sync"
 
+	"qat-computer/flags"
 	"qat-computer/logger"
 	"qat-computer/on_go"
 	"qat-computer/utils"
@@ -13,82 +13,21 @@ import (
 	"qat-computer/helpers"
 )
 
-var Versionflag bool
-var Configflag bool
-
-func startoptions() {
-	flag.BoolVar(
-		&Versionflag,
-		"version", false,
-		"print version.",
-	)
-
-	flag.BoolVar(
-		&Configflag,
-		"show-config", false,
-		"print config.",
-	)
-
-	flag.IntVar(
-		&helpers.LogLevelflag,
-		"log-level", 0,
-		docs.GetLogLevelMan(),
-	)
-
-	flag.StringVar(
-		&helpers.ComputePathflag,
-		"compute", "",
-		docs.GetComputePathMan(),
-	)
-
-	flag.StringVar(
-		&helpers.FileExeNameflag,
-		"file_exe", "main.py",
-		docs.GetFileExeMan(),
-	)
-
-	flag.StringVar(
-		&helpers.RequirementsFileflag,
-		"requirements", "",
-		docs.GetRequirementsFileMan(),
-	)
-
-	flag.StringVar(
-		&helpers.PythonVerflag,
-		"python-version", "python3.10",
-		docs.GetPythonVerMan(),
-	)
-
-	flag.StringVar(
-		&helpers.DebianPkgflag,
-		"debian-pkg", "",
-		docs.GetDebianPkgMan(),
-	)
-
-	flag.StringVar(
-		&helpers.ConfPathflag,
-		"conf", "",
-		docs.GetConfigPathMan(),
-	)
-
-	flag.Parse()
-}
-
 func InitConf() {
 	helpers.InitFile()
 	logger.GetLogger().LogInit()
 }
 
 func main() {
-	startoptions()
+	flags.StartOptions()
 	InitConf()
 
-	if Versionflag {
+	if flags.Versionflag {
 		logger.GetLogger().LogDraw(docs.GetVersion())
 		os.Exit(0)
 	}
 
-	if Configflag {
+	if flags.Configflag {
 		logger.GetLogger().LogDraw(utils.ToJSON(helpers.TheAppConfig()))
 		os.Exit(0)
 	}

@@ -15,6 +15,7 @@ class TestOnGoContainer(TestCase):
 
     def test_full_endpoint(self):
         """Test full endpoint."""
+        os.environ["SUBCMD"] = "compute"
         os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml"
         stdout = call_container(
             filepath=os.path.join(self.current_directory, "../"), waitfor="# End"
