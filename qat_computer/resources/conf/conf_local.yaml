@@ -3,8 +3,10 @@
 ## 1 : Warning
 ## 2 : Error --> Always
 ## 3 : Critical --> Always
-loglevel: 0
+loglevel: 0   # Optionnal
 #debian_packages:
 #  - "jq"
-python_version: "python3.9"
-computepath: "resources/compute/simple_python_repository/main.py"
+python_version: "python3.9"   # Optionnal
+compute_path: "resources/compute/simple_python_repository"
+filename_to_execute: "main.py"
+#requirements_file: "requirements.txt"   # Optionnal

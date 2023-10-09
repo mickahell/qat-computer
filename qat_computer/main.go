@@ -42,6 +42,18 @@ func startoptions() {
 	)
 
 	flag.StringVar(
+		&helpers.FileExeNameflag,
+		"file_exe", "main.py",
+		docs.GetFileExeMan(),
+	)
+
+	flag.StringVar(
+		&helpers.RequirementsFileflag,
+		"requirements", "",
+		docs.GetRequirementsFileMan(),
+	)
+
+	flag.StringVar(
 		&helpers.PythonVerflag,
 		"python-version", "python3.10",
 		docs.GetPythonVerMan(),

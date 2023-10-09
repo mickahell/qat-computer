@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"os"
 	"qat-computer/logger"
 )
 
@@ -12,4 +13,12 @@ func ToJSON(obj interface{}) string {
 	}
 
 	return string(res)
+}
+
+func FileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
 }

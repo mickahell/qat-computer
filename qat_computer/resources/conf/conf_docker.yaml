@@ -7,4 +7,6 @@ loglevel: 0
 debian_packages:
   - "jq"
 python_version: "python3.10"
-computepath: "/etc/qat-computer/compute/simple_python_repository/main.py"
+compute_path: "/etc/qat-computer/compute/simple_python_repository"
+filename_to_execute: "main.py"
+requirements_file: "requirements.txt"   # Optionnal

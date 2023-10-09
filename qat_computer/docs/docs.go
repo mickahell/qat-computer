@@ -37,14 +37,14 @@ func GetAppName() string {
 
 func GetConfigPathMan() string {
 	man := "Path for the configuration yaml file.\n" +
-		"The configuration file can contains any options presented below."
+		"The configuration file can contains any options presented."
 
 	return man
 }
 
 func GetLogLevelMan() string {
 	man := "level of log to print :\n" +
-		"0 : Informational\n" +
+		"0 : Informational (default value)\n" +
 		"1 : Warning\n" +
 		"2 : Error --> Always shown\n" +
 		"3 : Critical --> Always shown"
@@ -53,7 +53,19 @@ func GetLogLevelMan() string {
 }
 
 func GetComputePathMan() string {
-	man := "Path for the project to compute yaml file"
+	man := "Path of the project to compute."
+
+	return man
+}
+
+func GetFileExeMan() string {
+	man := "Name of the file to compute the project."
+
+	return man
+}
+
+func GetRequirementsFileMan() string {
+	man := "Name of the requirements file to setup the project."
 
 	return man
 }
