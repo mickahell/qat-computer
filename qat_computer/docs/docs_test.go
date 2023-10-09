@@ -67,6 +67,26 @@ func TestGetComputePathMan(t *testing.T) {
 	}
 }
 
+func TestGetFileExeMan(t *testing.T) {
+	var got interface{} = GetFileExeMan()
+
+	_, ok := got.(string)
+
+	if ok == false {
+		log.Fatalln("man file exec is not a string !")
+	}
+}
+
+func TestGetRequirementsFileMan(t *testing.T) {
+	var got interface{} = GetRequirementsFileMan()
+
+	_, ok := got.(string)
+
+	if ok == false {
+		log.Fatalln("man requirements file is not a string !")
+	}
+}
+
 func TestGetPythonVerMan(t *testing.T) {
 	var got interface{} = GetComputePathMan()
 

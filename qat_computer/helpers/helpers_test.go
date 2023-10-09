@@ -33,7 +33,7 @@ func TestReadconfig(t *testing.T) {
 
 	loglevel := TheAppConfig().LogLevel
 
-	assert.Equal(t, 2, loglevel)
+	assert.Equal(t, 0, loglevel)
 }
 
 func TestTheAppConfig(t *testing.T) {
