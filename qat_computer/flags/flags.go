@@ -2,6 +2,7 @@ package flags
 
 import (
 	"flag"
+	"fmt"
 	"os"
 	"qat-computer/docs"
 	"qat-computer/helpers"
@@ -82,7 +83,10 @@ func StartOptions() {
 
 	switch os.Args[1] {
 	case docs.ComputeStr:
-		computeCmd.Parse(os.Args[2:])
+		err := computeCmd.Parse(os.Args[2:])
+		if err != nil {
+			fmt.Println(err)
+		}
 	default:
 		flag.Parse()
 	}
