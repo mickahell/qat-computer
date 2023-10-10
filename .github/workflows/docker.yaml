@@ -2,6 +2,7 @@ name: Docker image
 
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches:
       - main
@@ -61,11 +62,11 @@ jobs:
             --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
             --build-arg FULL="${{ matrix.img_full }}" \
             --file docker/Dockerfile \
-            --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest
+            --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }}
       - name: Tag image
         run: |
-          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }} \
-            ${{ steps.image-name.outputs.IMAGE_ID }}:${{ steps.params.outputs.version_tag }}
+          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }} \
+            ${{ steps.image-name.outputs.IMAGE_ID }}:latest
 
       - name: Log in to GitHub registry
         if: github.ref_type == 'branch'
@@ -76,6 +77,6 @@ jobs:
         run: |
           docker login --username=${{ env.DOCKERHUB_USER }} --password=${{ env.DOCKERHUB_PASS }}
 
-      - name: Push image to github registry
+      - name: Push image to registry
         run: |
           docker push ${{ steps.image-name.outputs.IMAGE_ID }} --all-tags
