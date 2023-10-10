@@ -26,24 +26,25 @@ jobs:
         img_full: ["false", "true"]
     steps:
       - uses: actions/checkout@v3
+      - name: Get version
+        id: img-version
+        run: |
+          if [[ "${{ matrix.img_full }}" == "true" ]]; then
+            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}_full" >> "$GITHUB_OUTPUT"
+          else
+            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Get params
         id: params
         run: |
-          # Image version
-          if [[ "${{ matrix.img_full }}" == "true" ]]; then
-            export IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}_full"
-          else
-            export IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}"
-          fi
-
-          # Image params
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             echo "version_tag=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           else
             echo "version_tag=$(cat VERSION.txt)-master" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=ghcr.io/${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           fi
       - name: Get image name
