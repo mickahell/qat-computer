@@ -10,7 +10,7 @@ on:
       - '*'
 
 env:
-  IMAGE_NAME: "qat-computer"
+  IMAGE_NAME: "qatcomputer"
   DOCKERHUB_USER: "mickahell"
   DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
 
@@ -30,7 +30,7 @@ jobs:
         id: img-version
         run: |
           if [[ "${{ matrix.img_full }}" == "true" ]]; then
-            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}_full" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}-full" >> "$GITHUB_OUTPUT"
           else
             echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}" >> "$GITHUB_OUTPUT"
           fi
@@ -56,6 +56,7 @@ jobs:
       - name: Build image
         run: |
           docker build . \
+            --build-arg IMAGE_NAME="${{ steps.params.outputs.IMAGE_NAME_UP }}" \
             --build-arg GITHUB_ACTOR="${{ github.repository_owner }}" \
             --build-arg GITHUB_REPOSITORY="${{ github.repository }}" \
             --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
