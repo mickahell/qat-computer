@@ -2,7 +2,6 @@ name: Docker image
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - main
@@ -41,7 +40,7 @@ jobs:
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
             echo "OWNER_ADD=${{ env.DOCKERHUB_USER }}" >> "$GITHUB_OUTPUT"
-            echo "REGISTRY_ADD= " >> "$GITHUB_OUTPUT"
+            echo "REGISTRY_ADD=" >> "$GITHUB_OUTPUT"
           else
             echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
             echo "OWNER_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
