@@ -1,4 +1,4 @@
-PROJECT_NAME?=qat-computer
+PROJECT_NAME?=qatcomputer
 PYTHON_VERS?=3.9
 
 docker-build:
