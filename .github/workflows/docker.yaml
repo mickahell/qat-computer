@@ -31,19 +31,19 @@ jobs:
         run: |
           # Image version
           if [[ "${{ matrix.img_full }}" == "true" ]]; then
-            IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}_full"
+            export IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}_full"
           else
-            IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}"
+            export IMAGE_NAME_VERS="${{ env.IMAGE_NAME }}"
           fi
 
           # Image params
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             echo "version_tag=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ env.IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           else
             echo "version_tag=$(cat VERSION.txt)-master" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ env.IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=ghcr.io/${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           fi
       - name: Get image name
@@ -56,7 +56,7 @@ jobs:
         run: |
           docker build . \
             --build-arg GITHUB_ACTOR="${{ github.repository_owner }}" \
-            --build-arg GITHUB_REPOSITORY="${{ env.GITHUB_REPOSITORY }}" \
+            --build-arg GITHUB_REPOSITORY="${{ github.repository }}" \
             --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
             --build-arg FULL="${{ matrix.img_full }}" \
             --file docker/Dockerfile \

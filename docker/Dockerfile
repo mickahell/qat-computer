@@ -31,10 +31,10 @@ ENV PROJECT_NAME=qat-computer
 LABEL org.opencontainers.image.title="${PROJECT_NAME}" \
       org.opencontainers.image.authors="${GITHUB_ACTOR}" \
       org.opencontainers.image.vendor="${GITHUB_REPOSITORY}" \
-      org.opencontainers.image.source="https://github.com/${GITHUB_ACTOR}/${PROJECT_NAME}" \
-      org.opencontainers.image.url="https://github.com/${GITHUB_ACTOR}/${PROJECT_NAME}/tags" \
+      org.opencontainers.image.source="https://github.com/${GITHUB_REPOSITORY}" \
+      org.opencontainers.image.url="https://github.com/${GITHUB_REPOSITORY}/tags" \
       org.opencontainers.image.description="Qiskit base docker image." \
-      org.opencontainers.image.documentation="https://github.com/${GITHUB_ACTOR}/${PROJECT_NAME}/blob/main/README.md" \
+      org.opencontainers.image.documentation="https://github.com/${GITHUB_REPOSITORY}/blob/main/README.md" \
       org.opencontainers.image.os="ubuntu" \
       org.opencontainers.image.version="${GITHUB_REF}"
 
