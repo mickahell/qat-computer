@@ -21,8 +21,9 @@ jobs:
     permissions:
       packages: write
       contents: read
-    matrix:
-      img_full: ["false", "true"]
+    strategy:
+      matrix:
+        img_full: ["false", "true"]
     steps:
       - uses: actions/checkout@v3
       - name: Get params
