@@ -26,6 +26,7 @@ jobs:
 
   end2end:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/setup-python@v4
         with:

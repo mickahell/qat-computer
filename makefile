@@ -2,7 +2,7 @@ PROJECT_NAME?=qat-computer
 PYTHON_VERS?=3.9
 
 docker-build:
-	docker build . -f docker/Dockerfile --tag $(PROJECT_NAME):latest
+	docker build . --build-arg FULL=false --file docker/Dockerfile --tag $(PROJECT_NAME):latest
 
 docker-start:
 	docker run --rm \

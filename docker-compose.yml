@@ -5,6 +5,8 @@ services:
     build:
       context: ./
       dockerfile: ./docker/Dockerfile
+      args:
+        FULL: ${FULL:-false}
     volumes:
       - "./qat_computer/resources/conf:/etc/qat-computer/conf"
       - "./qat_computer/resources/compute:/etc/qat-computer/compute"
