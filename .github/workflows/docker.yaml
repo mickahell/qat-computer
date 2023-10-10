@@ -55,10 +55,10 @@ jobs:
       - name: Build image
         run: |
           docker build . \
-            --build-arg GITHUB_ACTOR=${{ github.repository_owner }} \
-            --build-arg GITHUB_REPOSITORY=${{ GITHUB_REPOSITORY }} \
-            --build-arg GITHUB_REF=${{ steps.params.outputs.version_tag }} \
-            --build-arg FULL=${{ matrix.img_full }} \
+            --build-arg GITHUB_ACTOR="${{ github.repository_owner }}" \
+            --build-arg GITHUB_REPOSITORY="${{ env.GITHUB_REPOSITORY }}" \
+            --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
+            --build-arg FULL="${{ matrix.img_full }}" \
             --file docker/Dockerfile \
             --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest
       - name: Tag image
