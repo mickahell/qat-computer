@@ -1,0 +1,6 @@
+qiskit
+qiskit-aer
+networkx
+numpy
+pandas
+scipy

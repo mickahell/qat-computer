@@ -1,10 +1,12 @@
 services:
   qat_computer:
-    container_name: ${PROJECT_NAME:-qat-computer}
-    image: ${PROJECT_NAME:-qat-computer}:latest
+    container_name: ${PROJECT_NAME:-qatcomputer}
+    image: ${PROJECT_NAME:-qatcomputer}:latest
     build:
       context: ./
       dockerfile: ./docker/Dockerfile
+      args:
+        FULL: ${FULL:-false}
     volumes:
       - "./qat_computer/resources/conf:/etc/qat-computer/conf"
       - "./qat_computer/resources/compute:/etc/qat-computer/compute"

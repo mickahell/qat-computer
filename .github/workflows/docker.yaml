@@ -9,7 +9,7 @@ on:
       - '*'
 
 env:
-  IMAGE_NAME: "qat-computer"
+  IMAGE_NAME: "qatcomputer"
   DOCKERHUB_USER: "mickahell"
   DOCKERHUB_PASS: ${{ secrets.DOCKERHUB_PASS }}
 
@@ -20,18 +20,30 @@ jobs:
     permissions:
       packages: write
       contents: read
+    strategy:
+      matrix:
+        img_full: ["false", "true"]
     steps:
       - uses: actions/checkout@v3
+      - name: Get version
+        id: img-version
+        run: |
+          if [[ "${{ matrix.img_full }}" == "true" ]]; then
+            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}-full" >> "$GITHUB_OUTPUT"
+          else
+            echo "IMAGE_NAME_VERS=${{ env.IMAGE_NAME }}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Get params
         id: params
         run: |
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
             echo "version_tag=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ env.IMAGE_NAME }}" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           else
             echo "version_tag=$(cat VERSION.txt)-master" >> "$GITHUB_OUTPUT"
-            echo "IMAGE_NAME_UP=${{ env.IMAGE_NAME }}-dev" >> "$GITHUB_OUTPUT"
+            echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
             echo "REGISTRY_ADD=ghcr.io/${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
           fi
       - name: Get image name
@@ -42,7 +54,13 @@ jobs:
 
       - name: Build image
         run: |
-          docker build . --file docker/Dockerfile \
+          docker build . \
+            --build-arg IMAGE_NAME="${{ steps.params.outputs.IMAGE_NAME_UP }}" \
+            --build-arg GITHUB_ACTOR="${{ github.repository_owner }}" \
+            --build-arg GITHUB_REPOSITORY="${{ github.repository }}" \
+            --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
+            --build-arg FULL="${{ matrix.img_full }}" \
+            --file docker/Dockerfile \
             --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest
       - name: Tag image
         run: |

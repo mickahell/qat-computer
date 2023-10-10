@@ -18,24 +18,39 @@ RUN make build-app
 # Runner stage
 FROM ubuntu:22.04 as runner
 
-ENV PROJECT_NAME=qat-computer
+# For label
+ARG IMAGE_NAME
+ARG GITHUB_ACTOR
+ARG GITHUB_REPOSITORY
+ARG GITHUB_REF
 
-LABEL org.opencontainers.image.title="${PROJECT_NAME}" \
-      org.opencontainers.image.authors=${GITHUB_ACTOR} \
-      org.opencontainers.image.vendor=${GITHUB_REPOSITORY} \
-      org.opencontainers.image.source="https://github.com/mickahell/${PROJECT_NAME}" \
-      org.opencontainers.image.url="https://github.com/mickahell/${PROJECT_NAME}/tags" \
+# If true, install full qiskit libs
+ARG FULL
+
+ENV PROJECT_NAME=qatcomputer
+
+LABEL org.opencontainers.image.title="${IMAGE_NAME}" \
+      org.opencontainers.image.authors="${GITHUB_ACTOR}" \
+      org.opencontainers.image.vendor="${GITHUB_REPOSITORY}" \
+      org.opencontainers.image.source="https://github.com/${GITHUB_REPOSITORY}" \
+      org.opencontainers.image.url="https://github.com/${GITHUB_REPOSITORY}/tags" \
       org.opencontainers.image.description="Qiskit base docker image." \
-      org.opencontainers.image.documentation="https://github.com/mickahell/${PROJECT_NAME}/blob/main/README.md" \
+      org.opencontainers.image.documentation="https://github.com/${GITHUB_REPOSITORY}/blob/main/README.md" \
       org.opencontainers.image.os="ubuntu" \
-      org.opencontainers.image.version=${GITHUB_REF}
+      org.opencontainers.image.version="${GITHUB_REF}"
 
 COPY --from=builder /src/qat-computer /usr/local/bin/qat-computer
+COPY docker/deps.sh /usr/local/bin/deps.sh
+COPY docker/requirements.txt /usr/local/bin/requirements.txt
+COPY docker/requirements-full.txt /usr/local/bin/requirements-full.txt
 
 RUN apt update -yq
 RUN apt dist-upgrade -yq
-RUN apt install -yq python3-pip \
-&& apt clean -y
+RUN apt install -yq python3-pip && apt clean -y
+
+RUN pip install --upgrade pip setuptools
+RUN pip install -r /usr/local/bin/requirements.txt
+RUN /usr/local/bin/deps.sh
 
 VOLUME /etc/qat-computer/conf/
 VOLUME /etc/qat-computer/compute/
