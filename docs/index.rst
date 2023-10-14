@@ -1,6 +1,6 @@
 .. image:: /images/DockerGopher.png
 
-_Docker & Go image by github.com/ashleymcnamara/gophers_
+*Docker & Go image by github.com/ashleymcnamara/gophers*
 
 QatComputer is base docker image for Qiskit.
 
