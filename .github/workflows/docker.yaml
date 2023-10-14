@@ -38,18 +38,19 @@ jobs:
         id: params
         run: |
           if [[ "${{ github.ref_type }}" == "tag" ]]; then
-            echo "version_tag=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
             echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}" >> "$GITHUB_OUTPUT"
-            echo "REGISTRY_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
+            echo "OWNER_ADD=${{ env.DOCKERHUB_USER }}" >> "$GITHUB_OUTPUT"
+            echo "REGISTRY_ADD=" >> "$GITHUB_OUTPUT"
           else
-            echo "version_tag=$(cat VERSION.txt)-master" >> "$GITHUB_OUTPUT"
             echo "IMAGE_NAME_UP=${{ steps.img-version.outputs.IMAGE_NAME_VERS }}-dev" >> "$GITHUB_OUTPUT"
-            echo "REGISTRY_ADD=ghcr.io/${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
+            echo "OWNER_ADD=${{ github.repository_owner }}" >> "$GITHUB_OUTPUT"
+            echo "REGISTRY_ADD=ghcr.io/" >> "$GITHUB_OUTPUT"
           fi
+          echo "version_tag=$(cat VERSION.txt)" >> "$GITHUB_OUTPUT"
       - name: Get image name
         id: image-name
         run: |
-          IMAGE_ID=${{ steps.params.outputs.REGISTRY_ADD }}/${{ steps.params.outputs.IMAGE_NAME_UP }}
+          IMAGE_ID=${{ steps.params.outputs.REGISTRY_ADD }}${{ steps.params.outputs.OWNER_ADD }}/${{ steps.params.outputs.IMAGE_NAME_UP }}
           echo "IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')" >> "$GITHUB_OUTPUT"
 
       - name: Build image
@@ -61,11 +62,11 @@ jobs:
             --build-arg GITHUB_REF="${{ steps.params.outputs.version_tag }}" \
             --build-arg FULL="${{ matrix.img_full }}" \
             --file docker/Dockerfile \
-            --tag ${{ steps.params.outputs.IMAGE_NAME_UP }}:latest
+            --tag ${{ steps.params.outputs.OWNER_ADD }}/${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }}
       - name: Tag image
         run: |
-          docker tag ${{ steps.params.outputs.IMAGE_NAME_UP }} \
-            ${{ steps.image-name.outputs.IMAGE_ID }}:${{ steps.params.outputs.version_tag }}
+          docker tag ${{ steps.params.outputs.OWNER_ADD }}/${{ steps.params.outputs.IMAGE_NAME_UP }}:${{ steps.params.outputs.version_tag }} \
+            ${{ steps.image-name.outputs.IMAGE_ID }}:latest
 
       - name: Log in to GitHub registry
         if: github.ref_type == 'branch'
@@ -76,6 +77,6 @@ jobs:
         run: |
           docker login --username=${{ env.DOCKERHUB_USER }} --password=${{ env.DOCKERHUB_PASS }}
 
-      - name: Push image to github registry
+      - name: Push image to registry
         run: |
           docker push ${{ steps.image-name.outputs.IMAGE_ID }} --all-tags
