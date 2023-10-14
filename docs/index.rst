@@ -1,5 +1,6 @@
 .. image:: /images/DockerGopher.png
-    Docker & Go image by github.com/ashleymcnamara/gophers
+
+_Docker & Go image by github.com/ashleymcnamara/gophers_
 
 QatComputer is base docker image for Qiskit.
 
@@ -50,7 +51,6 @@ Blabla
   :maxdepth: 2
 
   Guides <guides/index>
-  API References <apidocs/index>
 
 .. Hiding - Indices and tables
    :ref:`genindex`
