@@ -45,22 +45,20 @@ class TestBasicContainer(TestCase):
         os.environ["NOFLAGCMD"] = "-qiskit-version"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
-        self.assertTrue(
-            b'qiskit' in stdout
-        )
+        self.assertTrue(b"qiskit" in stdout)
 
     def test_os_version_endpoint(self):
         """Test os version endpoint."""
         os.environ["NOFLAGCMD"] = "-os-version"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
-        self.assertTrue(
-            b'Ubuntu' in stdout
-        )
+        self.assertTrue(b"Ubuntu" in stdout)
 
     def test_conf_endpoint(self):
         """Test conf endpoint."""
-        os.environ["NOFLAGCMD"] = "-show-config -conf=/etc/qat-computer/conf/conf_docker.yaml"
+        os.environ[
+            "NOFLAGCMD"
+        ] = "-show-config -conf=/etc/qat-computer/conf/conf_docker.yaml"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         self.assertTrue(
