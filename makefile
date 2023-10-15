@@ -13,6 +13,14 @@ docker-start:
 		$(CONTAINER_NAME):latest \
 		compute -conf=/etc/$(PROJECT_NAME)/conf/conf_docker.yaml
 
+docker-inside:
+	docker run --rm \
+		-it --entrypoint=/bin/bash \
+		--name $(CONTAINER_NAME) \
+		-v $(PWD)/qat_computer/resources/conf:/etc/$(PROJECT_NAME)/conf \
+		-v $(PWD)/qat_computer/resources/compute:/etc/$(PROJECT_NAME)/compute \
+		$(CONTAINER_NAME):latest
+
 compose-start:
 	docker-compose up && docker-compose rm -f
 

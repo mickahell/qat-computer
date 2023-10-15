@@ -24,11 +24,13 @@ class TestBasicContainer(TestCase):
         """SetUp container object."""
         self.current_directory = os.path.dirname(os.path.abspath(__file__))
         self.build_img = False
+        os.environ["NOFLAGCMD"] = ""
+        os.environ["SUBCMD"] = ""
+        os.environ["FLAGCMD"] = ""
 
     def test_version_endpoint(self):
         """Test version endpoint."""
-        os.environ["SUBCMD"] = ""
-        os.environ["CMD"] = "-version"
+        os.environ["NOFLAGCMD"] = "-version"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         with open(
@@ -38,10 +40,25 @@ class TestBasicContainer(TestCase):
         ) as vers_file:
             self.assertTrue(bytes(vers_file.read(), "utf-8") in stdout)
 
+    def test_qiskit_version_endpoint(self):
+        """Test qiskit version endpoint."""
+        os.environ["NOFLAGCMD"] = "-qiskit-version"
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
+
+        self.assertTrue(b"qiskit" in stdout)
+
+    def test_os_version_endpoint(self):
+        """Test os version endpoint."""
+        os.environ["NOFLAGCMD"] = "-os-version"
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
+
+        self.assertTrue(b"Ubuntu" in stdout)
+
     def test_conf_endpoint(self):
         """Test conf endpoint."""
-        os.environ["SUBCMD"] = "compute"
-        os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml -show-config"
+        os.environ[
+            "NOFLAGCMD"
+        ] = "-show-config -conf=/etc/qat-computer/conf/conf_docker.yaml"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         self.assertTrue(

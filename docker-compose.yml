@@ -1,7 +1,7 @@
 services:
   qat_computer:
-    container_name: ${PROJECT_NAME:-qatcomputer}
-    image: ${PROJECT_NAME:-qatcomputer}:latest
+    container_name: ${CONTAINER_NAME:-qatcomputer}
+    image: ${CONTAINER_NAME:-qatcomputer}:latest
     build:
       context: ./
       dockerfile: ./docker/Dockerfile
@@ -10,4 +10,4 @@ services:
     volumes:
       - "./qat_computer/resources/conf:/etc/qat-computer/conf"
       - "./qat_computer/resources/compute:/etc/qat-computer/compute"
-    command: "${SUBCMD} ${CMD:-help}"
+    command: "${NOFLAGCMD} ${SUBCMD} ${FLAGCMD}"

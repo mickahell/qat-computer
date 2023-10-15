@@ -9,18 +9,14 @@ import (
 )
 
 var Versionflag bool
+var QiskitVersionflag bool
+var OSVersionflag bool
 var Configflag bool
 
 var computeCmd = flag.NewFlagSet(docs.ComputeStr, flag.ExitOnError)
 
-func setupCommonFlags() {
+func setupSubCMDFlags() {
 	for _, fs := range []*flag.FlagSet{computeCmd} {
-		fs.BoolVar(
-			&Configflag,
-			"show-config", false,
-			"print config.",
-		)
-
 		fs.IntVar(
 			&helpers.LogLevelflag,
 			"log-level", 0,
@@ -35,7 +31,7 @@ func setupCommonFlags() {
 
 		fs.StringVar(
 			&helpers.PythonVerflag,
-			"python-version", "python3.10",
+			"python-version", "python3",
 			docs.GetPythonVerMan(),
 		)
 
@@ -70,13 +66,37 @@ func setupComputeFlags() {
 }
 
 func StartOptions() {
-	setupCommonFlags()
+	setupSubCMDFlags()
 	setupComputeFlags()
 
 	flag.BoolVar(
 		&Versionflag,
 		"version", false,
 		"print version.",
+	)
+
+	flag.BoolVar(
+		&QiskitVersionflag,
+		"qiskit-version", false,
+		"print qiskit version.",
+	)
+
+	flag.BoolVar(
+		&OSVersionflag,
+		"os-version", false,
+		"print os version.",
+	)
+
+	flag.BoolVar(
+		&Configflag,
+		"show-config", false,
+		"print config.",
+	)
+
+	flag.StringVar(
+		&helpers.ConfPathflag,
+		"conf", "",
+		docs.GetConfigPathMan(),
 	)
 
 	flag.Usage = docs.GetUsageMan
