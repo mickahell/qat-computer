@@ -46,7 +46,7 @@ COPY docker/requirements-full.txt /usr/local/bin/requirements-full.txt
 
 RUN apt update -yq
 RUN apt dist-upgrade -yq
-RUN apt install -yq python3-pip && apt clean -y
+RUN apt install -yq lsb-release python3-pip && apt clean -y
 
 RUN pip install --upgrade pip setuptools
 RUN pip install -r /usr/local/bin/requirements.txt

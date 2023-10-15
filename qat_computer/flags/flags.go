@@ -9,6 +9,8 @@ import (
 )
 
 var Versionflag bool
+var QiskitVersionflag bool
+var OSVersionflag bool
 var Configflag bool
 
 var computeCmd = flag.NewFlagSet(docs.ComputeStr, flag.ExitOnError)
@@ -35,7 +37,7 @@ func setupCommonFlags() {
 
 		fs.StringVar(
 			&helpers.PythonVerflag,
-			"python-version", "python3.10",
+			"python-version", "python3",
 			docs.GetPythonVerMan(),
 		)
 
@@ -77,6 +79,18 @@ func StartOptions() {
 		&Versionflag,
 		"version", false,
 		"print version.",
+	)
+
+	flag.BoolVar(
+		&QiskitVersionflag,
+		"qiskit-version", false,
+		"print qiskit version.",
+	)
+
+	flag.BoolVar(
+		&OSVersionflag,
+		"os-version", false,
+		"print os version.",
 	)
 
 	flag.Usage = docs.GetUsageMan

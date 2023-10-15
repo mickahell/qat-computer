@@ -38,12 +38,22 @@ class TestBasicContainer(TestCase):
         ) as vers_file:
             self.assertTrue(bytes(vers_file.read(), "utf-8") in stdout)
 
-    def test_conf_endpoint(self):
-        """Test conf endpoint."""
-        os.environ["SUBCMD"] = "compute"
-        os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml -show-config"
+    def test_qiskit_version_endpoint(self):
+        """Test qiskit version endpoint."""
+        os.environ["SUBCMD"] = ""
+        os.environ["CMD"] = "-qiskit-version"
         stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
 
         self.assertTrue(
-            b'"ConfPath":"/etc/qat-computer/conf/conf_docker.yaml"' in stdout
+            b'qiskit' in stdout
+        )
+
+    def test_os_version_endpoint(self):
+        """Test os version endpoint."""
+        os.environ["SUBCMD"] = ""
+        os.environ["CMD"] = "-os-version"
+        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
+
+        self.assertTrue(
+            b'Ubuntu' in stdout
         )
