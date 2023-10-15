@@ -12,21 +12,13 @@ class TestComputeContainer(TestCase):
         """SetUp compute container object."""
         self.current_directory = os.path.dirname(os.path.abspath(__file__))
         self.build_img = False
-    
-    def test_conf_endpoint(self):
-        """Test conf endpoint."""
+        os.environ["NOFLAGCMD"] = ""
         os.environ["SUBCMD"] = "compute"
-        os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml -show-config"
-        stdout = call_container(filepath=os.path.join(self.current_directory, "../"))
-
-        self.assertTrue(
-            b'"ConfPath":"/etc/qat-computer/conf/conf_docker.yaml"' in stdout
-        )
+        os.environ["FLAGCMD"] = ""
 
     def test_full_endpoint(self):
         """Test full compute endpoint."""
-        os.environ["SUBCMD"] = "compute"
-        os.environ["CMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml"
+        os.environ["FLAGCMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml"
         stdout = call_container(
             filepath=os.path.join(self.current_directory, "../"), waitfor="# End"
         )
