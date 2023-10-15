@@ -17,12 +17,6 @@ var computeCmd = flag.NewFlagSet(docs.ComputeStr, flag.ExitOnError)
 
 func setupCommonFlags() {
 	for _, fs := range []*flag.FlagSet{computeCmd} {
-		fs.BoolVar(
-			&Configflag,
-			"show-config", false,
-			"print config.",
-		)
-
 		fs.IntVar(
 			&helpers.LogLevelflag,
 			"log-level", 0,
@@ -91,6 +85,18 @@ func StartOptions() {
 		&OSVersionflag,
 		"os-version", false,
 		"print os version.",
+	)
+
+	flag.BoolVar(
+		&Configflag,
+		"show-config", false,
+		"print config.",
+	)
+
+	flag.StringVar(
+		&helpers.ConfPathflag,
+		"conf", "",
+		docs.GetConfigPathMan(),
 	)
 
 	flag.Usage = docs.GetUsageMan
