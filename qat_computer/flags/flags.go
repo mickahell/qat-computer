@@ -15,7 +15,7 @@ var Configflag bool
 
 var computeCmd = flag.NewFlagSet(docs.ComputeStr, flag.ExitOnError)
 
-func setupCommonFlags() {
+func setupSubCMDFlags() {
 	for _, fs := range []*flag.FlagSet{computeCmd} {
 		fs.IntVar(
 			&helpers.LogLevelflag,
@@ -66,7 +66,7 @@ func setupComputeFlags() {
 }
 
 func StartOptions() {
-	setupCommonFlags()
+	setupSubCMDFlags()
 	setupComputeFlags()
 
 	flag.BoolVar(
