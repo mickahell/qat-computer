@@ -10,7 +10,7 @@ ENV GO111MODULE=on \
 RUN apk add --no-cache make gcc curl jq
 
 COPY qat_computer /src/
-COPY VERSION.txt /src/docs/
+COPY VERSION.txt /src/docs/VERSION.txt
 WORKDIR /src/
 
 RUN make build-app
