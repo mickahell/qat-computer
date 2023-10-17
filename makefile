@@ -1,8 +1,9 @@
 CONTAINER_NAME?=qatcomputer
 PROJECT_NAME?=qat-computer
+FULL?=false
 
 docker-build:
-	docker build . --build-arg FULL=false --file docker/Dockerfile --tag $(CONTAINER_NAME):latest
+	docker build . --build-arg FULL=$(FULL) --file docker/Dockerfile --tag $(CONTAINER_NAME):latest
 
 docker-start:
 	docker run -d --rm --privileged --cgroupns=host \

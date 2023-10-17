@@ -13,8 +13,3 @@ services:
       - "/sys/fs/cgroup:/sys/fs/cgroup:rw"
       - "./qat_computer/resources/conf:/etc/qat-computer/conf"
       - "./qat_computer/resources/compute:/etc/qat-computer/compute"
-    healthcheck:
-      test: [ "CMD-SHELL", "systemctl is-system-running" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
