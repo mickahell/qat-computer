@@ -22,8 +22,8 @@ def run_container(
         privileged=True,
         volumes=[
             "/sys/fs/cgroup:/sys/fs/cgroup:rw",
-            f"{current_directory}/../qat_computer/resources/conf:/etc/qat-computer/conf",
-            f"{current_directory}/../qat_computer/resources/compute:/etc/qat-computer/compute",
+            os.path.join(current_directory, "../qat_computer/resources/conf:/etc/qat-computer/conf"),
+            os.path.join(current_directory, "../qat_computer/resources/compute:/etc/qat-computer/compute"),
         ],
     )
 
@@ -31,8 +31,8 @@ def run_container(
 def build_image(docker_env: docker.DockerClient, current_directory: str):
     """Build the image function."""
     docker_env.images.build(
-        path=f"{current_directory}/../",
-        dockerfile=f"{current_directory}/../docker/Dockerfile",
+        path=os.path.join(current_directory, "../"),
+        dockerfile=os.path.join(current_directory, "../docker/Dockerfile"),
         tag="qatcomputer",
     )
 
@@ -59,11 +59,13 @@ class TestBasicContainer(TestCase):
         )
 
         self.assertEqual(exit_code, 0)
+        print("output : ", output)
         with open(
             os.path.join(self.current_directory, "../VERSION.txt"),
             "r",
             encoding="utf-8",
         ) as vers_file:
+            print("bytes vers file : ", bytes(vers_file.read(), "utf-8"))
             self.assertTrue(bytes(vers_file.read(), "utf-8") in output)
 
     def test_qiskit_version_endpoint(self):
