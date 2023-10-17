@@ -22,8 +22,14 @@ def run_container(
         privileged=True,
         volumes=[
             "/sys/fs/cgroup:/sys/fs/cgroup:rw",
-            os.path.join(current_directory, "../qat_computer/resources/conf:/etc/qat-computer/conf"),
-            os.path.join(current_directory, "../qat_computer/resources/compute:/etc/qat-computer/compute"),
+            os.path.join(
+                current_directory,
+                "../qat_computer/resources/conf:/etc/qat-computer/conf",
+            ),
+            os.path.join(
+                current_directory,
+                "../qat_computer/resources/compute:/etc/qat-computer/compute",
+            ),
         ],
     )
 
