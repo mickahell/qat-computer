@@ -65,13 +65,11 @@ class TestBasicContainer(TestCase):
         )
 
         self.assertEqual(exit_code, 0)
-        print("output : ", output)
         with open(
             os.path.join(self.current_directory, "../VERSION.txt"),
             "r",
             encoding="utf-8",
         ) as vers_file:
-            print("bytes vers file : ", bytes(vers_file.read(), "utf-8"))
             self.assertTrue(bytes(vers_file.read(), "utf-8") in output)
 
     def test_qiskit_version_endpoint(self):
