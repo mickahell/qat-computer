@@ -6,6 +6,7 @@ on:
 
 env:
   PY_VERSION: 3.9
+  IMAGE_NAME: "qatcomputer"
 
 jobs:
   style:
@@ -36,6 +37,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install tox
+      - name: Build image
+        run: |
+          docker build . --build-arg FULL=false --file docker/Dockerfile --tag ${{ env.IMAGE_NAME }}:latest
       - name: Test using tox environment
         run: |
           pver=${{ env.PY_VERSION }}

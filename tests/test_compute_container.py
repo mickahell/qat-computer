@@ -1,8 +1,9 @@
-"""Tests for on go container."""
+"""Tests for compute subcmd container."""
 import os
 from unittest import TestCase
+import docker
 
-from .test_basic_container import call_container
+from .test_basic_container import run_container
 
 
 class TestComputeContainer(TestCase):
@@ -12,17 +13,26 @@ class TestComputeContainer(TestCase):
         """SetUp compute container object."""
         self.current_directory = os.path.dirname(os.path.abspath(__file__))
         self.build_img = False
-        os.environ["NOFLAGCMD"] = ""
-        os.environ["SUBCMD"] = "compute"
-        os.environ["FLAGCMD"] = ""
+        self.binary = "qat-computer"
+        self.subcmd = "compute"
+        self.flagcmd = ""
+        self.client = docker.from_env()
+        self.container = run_container(
+            docker_env=self.client, current_directory=self.current_directory
+        )
 
     def test_full_endpoint(self):
         """Test full compute endpoint."""
-        os.environ["FLAGCMD"] = "-conf /etc/qat-computer/conf/conf_docker.yaml"
-        stdout = call_container(
-            filepath=os.path.join(self.current_directory, "../"), waitfor="# End"
+        self.flagcmd = "-conf /etc/qat-computer/conf/conf_docker.yaml"
+        exit_code, output = self.container.exec_run(
+            cmd=f"{self.binary} {self.subcmd} {self.flagcmd}", tty=True
         )
 
-        self.assertTrue(b"ERROR" not in stdout)
-        self.assertTrue(b"WARNING" not in stdout)
-        self.assertTrue(b'message="4.0"' in stdout)
+        self.assertEqual(exit_code, 0)
+        self.assertTrue(b"ERROR" not in output)
+        self.assertTrue(b"WARNING" not in output)
+        self.assertTrue(b'message="4.0"' in output)
+
+    def tearDown(self) -> None:
+        """TearDown compute container object."""
+        self.container.remove(force=True)

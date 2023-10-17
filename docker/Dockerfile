@@ -28,6 +28,7 @@ ARG GITHUB_REF
 ARG FULL
 
 ENV PROJECT_NAME=qatcomputer
+ENV CONTAINER_STATUS="true"
 
 LABEL org.opencontainers.image.title="${IMAGE_NAME}" \
       org.opencontainers.image.authors="${GITHUB_ACTOR}" \
@@ -44,18 +45,36 @@ COPY docker/deps.sh /usr/local/bin/deps.sh
 COPY docker/requirements.txt /usr/local/bin/requirements.txt
 COPY docker/requirements-full.txt /usr/local/bin/requirements-full.txt
 
+COPY docker/initctl_faker .
+
 RUN apt update -yq
 RUN apt dist-upgrade -yq
-RUN apt install -yq lsb-release python3-pip && apt clean -y
+RUN apt install -yq --no-install-recommends \
+    apt-utils build-essential locales lsb-release \
+    python3-setuptools python3-pip python3-yaml \
+    software-properties-common \
+    systemd systemd-cron sudo \
+    && apt clean -y
+
+RUN locale-gen en_US.UTF-8
 
 RUN pip install --upgrade pip setuptools
 RUN pip install -r /usr/local/bin/requirements.txt
 RUN /usr/local/bin/deps.sh
 
+RUN chmod +x initctl_faker && rm -fr /sbin/initctl && ln -s /initctl_faker /sbin/initctl
+
+# Remove unnecessary getty and udev targets that result in high CPU usage when using multiple containers
+RUN rm -f /lib/systemd/system/systemd*udev* \
+    && rm -f /lib/systemd/system/getty.target
+
+VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 VOLUME /etc/qat-computer/conf/
 VOLUME /etc/qat-computer/compute/
 
 WORKDIR /usr/local/bin/
 
-ENTRYPOINT [ "/usr/local/bin/qat-computer" ]
-CMD [ "--help" ]
+HEALTHCHECK --interval=10s --timeout=5s \
+    CMD if [[ $(systemctl is-system-running) == "running" ]]; then echo 0; else echo 1; fi
+
+CMD ["/lib/systemd/systemd"]
