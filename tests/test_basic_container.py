@@ -64,8 +64,6 @@ class TestBasicContainer(TestCase):
             "r",
             encoding="utf-8",
         ) as vers_file:
-            print("bytes vers file : ", bytes(vers_file.read(), "utf-8"))
-            print("output : ", output)
             self.assertTrue(bytes(vers_file.read(), "utf-8") in output)
 
     def test_qiskit_version_endpoint(self):
