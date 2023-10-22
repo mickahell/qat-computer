@@ -12,15 +12,3 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
-
-// Packages system
-
-replace qat-computer/docs => ../docs
-
-replace qat-computer/helpers => ../helpers
-
-replace qat-computer/logger => ../logger
-
-replace qat-computer/on_go => ../on_go
-
-replace qat-computer/utils => ../utils

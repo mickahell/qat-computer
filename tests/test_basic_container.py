@@ -24,11 +24,11 @@ def run_container(
             "/sys/fs/cgroup:/sys/fs/cgroup:rw",
             os.path.join(
                 current_directory,
-                "../qat_computer/resources/conf:/etc/qat-computer/conf",
+                "../qat_computer/resources/conf:/etc/qat-computer/conf:rw",
             ),
             os.path.join(
                 current_directory,
-                "../qat_computer/resources/compute:/etc/qat-computer/compute",
+                "../qat_computer/resources/compute:/etc/qat-computer/compute:rw",
             ),
         ],
     )
