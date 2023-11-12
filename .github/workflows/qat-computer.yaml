@@ -1,4 +1,4 @@
-name: Golang tests
+name: Golang qat-computer tests
 
 on:
   pull_request:

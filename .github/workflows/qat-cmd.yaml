@@ -1,0 +1,54 @@
+name: Golang qat-cmd tests
+
+on:
+  pull_request:
+    paths:
+      - 'qat_cmd/**'
+      - '.github/workflows/**'
+  workflow_dispatch:
+
+env:
+  GO_DIR: qat_cmd
+  GO_VERSION: 1.19
+
+jobs:
+  style:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{env.GO_VERSION}}
+      - uses: actions/checkout@v3
+      - name: golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: latest
+          working-directory: ${{env.GO_DIR}}
+      - name: fmt
+        run: |
+          cd "${GO_DIR}"
+          check=$(go fmt)
+          if [["${check}" -ne ""]]; then
+            exit 1
+          fi
+
+  unittests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ${{env.GO_VERSION}}
+      - name: run tests
+        run: |
+          cd "${GO_DIR}"
+          go test ./... -covermode=count -coverprofile ./coverage.out
+      - name: coverage
+        run: |
+          cd "${GO_DIR}"
+          total_cov=$(go tool cover -func ./coverage.out | grep total |  grep -Eo '[0-9]+\.[0-9]+')
+          if [[ "$total_cov" < 80.0 ]]; then
+            echo "not enought tests"
+            echo "::warning title=not enought tests::${total_cov}%"
+            #exit 1
+          fi
