@@ -11,6 +11,8 @@ import (
 var version_file string
 
 const app_name string = "Qat Command"
+
+// Docker relative
 const BinaryName string = "qat-computer"
 const ImageName string = "qatcomputer"
 const RegistryImage string = "ghcr.io/mickahell/" + ImageName + "-dev"
