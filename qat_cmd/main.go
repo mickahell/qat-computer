@@ -52,11 +52,19 @@ func main() {
 				log.Println(err)
 			}
 		}
-		container.StartContainer(client, *container_id)
+		err = container.StartContainer(client, *container_id)
+		if err != nil {
+			log.Println(err)
+			os.Exit(1)
+		}
 	}
 
 	if flags.Stopflag {
-		container.StopAndRemoveContainer(client, docs.ContainerName, flags.StopRemoveflag)
+		err = container.StopAndRemoveContainer(client, docs.ContainerName, flags.StopRemoveflag)
+		if err != nil {
+			log.Println(err)
+			os.Exit(1)
+		}
 	}
 
 	if flags.Computerflag {

@@ -70,7 +70,10 @@ func RunContainer(
 }
 
 func StartContainer(client *client.Client, cont_id string) error {
-	client.ContainerStart(context.Background(), cont_id, types.ContainerStartOptions{})
+	err := client.ContainerStart(context.Background(), cont_id, types.ContainerStartOptions{})
+	if err != nil {
+		return err
+	}
 	log.Printf("Container %s is starting...", cont_id[:12])
 	json, err := client.ContainerInspect(context.Background(), cont_id)
 	if err != nil {
