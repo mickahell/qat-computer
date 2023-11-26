@@ -17,10 +17,17 @@ run-fmt:
 	$(HOME)/go/bin/yamlfmt conf/
 	$(HOME)/go/bin/golines . -w
 
+pull-app: setting-prepare
+	go run . pull -image ghcr.io/mickahell/qatcomputer-dev -tag latest
+
 start-app: setting-prepare
-	go run . compute \
-		-conf $(PWD)/resources/conf/conf_local.yaml \
-		-compute $(PWD)/resources/compute/simple_python_repository
+	go run . init -image qatcomputer -compute-volume ./../qat_computer/resources/compute -conf-volume ./../qat_computer/resources/conf
+
+compute-app: setting-prepare
+	go run . qatcomputer -computer-args "compute -conf conf_docker.yaml"
+
+stop-app: setting-prepare
+	go run . stop -remove
 
 build-app: setting-prepare
 	go build -mod=vendor

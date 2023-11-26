@@ -24,11 +24,11 @@ def run_container(
             "/sys/fs/cgroup:/sys/fs/cgroup:rw",
             os.path.join(
                 current_directory,
-                "../qat_computer/resources/conf:/etc/qat-computer/conf",
+                "../qat_computer/resources/conf:/etc/qat-computer/conf:rw",
             ),
             os.path.join(
                 current_directory,
-                "../qat_computer/resources/compute:/etc/qat-computer/compute",
+                "../qat_computer/resources/compute:/etc/qat-computer/compute:rw",
             ),
         ],
     )
@@ -94,7 +94,7 @@ class TestBasicContainer(TestCase):
 
     def test_conf_endpoint(self):
         """Test conf endpoint."""
-        self.noflagcmd = "-show-config -conf=/etc/qat-computer/conf/conf_docker.yaml"
+        self.noflagcmd = "-show-config -conf=conf_docker.yaml"
         exit_code, output = self.container.exec_run(
             cmd=f"{self.binary} {self.noflagcmd}", tty=True
         )

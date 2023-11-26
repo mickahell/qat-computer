@@ -15,7 +15,7 @@ docker-start:
 
 docker-compute:
 	docker exec --tty $(CONTAINER_NAME) \
-		$(PROJECT_NAME) compute -conf=/etc/$(PROJECT_NAME)/conf/conf_docker.yaml
+		$(PROJECT_NAME) compute -conf=conf_docker.yaml
 
 docker-inside:
 	docker exec -it $(CONTAINER_NAME) bash
