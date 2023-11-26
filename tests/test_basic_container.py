@@ -100,7 +100,9 @@ class TestBasicContainer(TestCase):
         )
 
         self.assertEqual(exit_code, 0)
-        self.assertTrue(b'"ConfPath":"conf_docker.yaml"' in output)
+        self.assertTrue(
+            b'"ConfPath":"/etc/qat-computer/conf/conf_docker.yaml"' in output
+        )
 
     def tearDown(self) -> None:
         """TearDown container object."""
