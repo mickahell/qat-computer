@@ -21,10 +21,10 @@ pull-app: setting-prepare
 	go run . pull -image ghcr.io/mickahell/qatcomputer-dev -tag latest
 
 start-app: setting-prepare
-	go run . init -compute-volume ./../qat_computer/resources/compute -conf-volume ./../qat_computer/resources/conf
+	go run . init -image qatcomputer -compute-volume ./../qat_computer/resources/compute -conf-volume ./../qat_computer/resources/conf
 
 compute-app: setting-prepare
-	go run . qatcomputer -computer-args "compute -conf /etc/$(PROJECT_NAME)/conf/conf_docker.yaml"
+	go run . qatcomputer -computer-args "compute -conf conf_docker.yaml"
 
 stop-app: setting-prepare
 	go run . stop -remove

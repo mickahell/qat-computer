@@ -42,6 +42,12 @@ func setupPullFlags() {
 func setupInitFlags() {
 	for _, fs := range []*flag.FlagSet{initCMD} {
 		fs.StringVar(
+			&FullImageNameflag,
+			"image", docs.RegistryImage,
+			"full url of the image to pull.",
+		)
+
+		fs.StringVar(
 			&ComputeVolumeflag,
 			"compute-volume", "",
 			"compute path for the compute volume.",

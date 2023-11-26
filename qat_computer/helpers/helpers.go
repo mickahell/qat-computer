@@ -3,6 +3,7 @@ package helpers
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -19,6 +20,7 @@ type Cfg struct {
 }
 
 var AppConfig Cfg
+var err error
 
 // flags
 var ConfPathflag string
@@ -31,7 +33,14 @@ var DebianPkgflag string
 
 func InitFile() {
 	AppConfig.LogLevel = LogLevelflag
-	AppConfig.ComputePath = ComputePathflag
+	if filepath.IsAbs(ComputePathflag) {
+		AppConfig.ComputePath = ComputePathflag
+	} else {
+		AppConfig.ComputePath, err = filepath.Abs(filepath.Join("compute", ComputePathflag))
+		if err != nil {
+			fmt.Println(err)
+		}
+	}
 	AppConfig.FileExeName = FileExeNameflag
 	AppConfig.RequirementsFile = RequirementsFileflag
 	AppConfig.PythonVer = PythonVerflag
@@ -40,7 +49,14 @@ func InitFile() {
 	}
 
 	if ConfPathflag != "" {
-		AppConfig.ConfPath = ConfPathflag
+		if filepath.IsAbs(ConfPathflag) {
+			AppConfig.ConfPath = ConfPathflag
+		} else {
+			AppConfig.ConfPath, err = filepath.Abs(filepath.Join("conf", ConfPathflag))
+			if err != nil {
+				fmt.Println(err)
+			}
+		}
 		ReadConfig()
 	}
 }
@@ -56,6 +72,13 @@ func ReadConfig() {
 	err = decoder.Decode(&AppConfig)
 	if err != nil {
 		fmt.Println(err)
+	}
+
+	if !filepath.IsAbs(AppConfig.ComputePath) {
+		AppConfig.ComputePath, err = filepath.Abs(filepath.Join("compute", AppConfig.ComputePath))
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 }
 

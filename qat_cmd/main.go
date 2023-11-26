@@ -43,7 +43,7 @@ func main() {
 		if container_id == nil {
 			container_id, err = container.RunContainer(
 				client,
-				docs.RegistryImage,
+				flags.FullImageNameflag,
 				docs.ContainerName,
 				filepath.Join(path, flags.ComputeVolumeflag),
 				filepath.Join(path, flags.ConfVolumeflag),

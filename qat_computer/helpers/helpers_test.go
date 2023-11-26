@@ -3,6 +3,7 @@ package helpers
 import (
 	"log"
 	"os"
+	"path/filepath"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -18,7 +19,11 @@ func TestMain(m *testing.M) {
 }
 
 func setUp() {
-	ConfPathflag = "../resources/conf/conf_local.yaml"
+	path, err := os.Getwd()
+	if err != nil {
+		log.Fatalf("Error in abs path !")
+	}
+	ConfPathflag = filepath.Join(path, "../resources/conf/conf_local.yaml")
 	InitFile()
 }
 

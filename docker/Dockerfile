@@ -72,7 +72,7 @@ VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 VOLUME /etc/qat-computer/conf/
 VOLUME /etc/qat-computer/compute/
 
-WORKDIR /usr/local/bin/
+WORKDIR /etc/qat-computer
 
 HEALTHCHECK --interval=10s --timeout=5s \
     CMD if [[ $(systemctl is-system-running) == "running" ]]; then echo 0; else echo 1; fi

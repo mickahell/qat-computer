@@ -94,14 +94,14 @@ class TestBasicContainer(TestCase):
 
     def test_conf_endpoint(self):
         """Test conf endpoint."""
-        self.noflagcmd = "-show-config -conf=/etc/qat-computer/conf/conf_docker.yaml"
+        self.noflagcmd = "-show-config -conf=conf_docker.yaml"
         exit_code, output = self.container.exec_run(
             cmd=f"{self.binary} {self.noflagcmd}", tty=True
         )
 
         self.assertEqual(exit_code, 0)
         self.assertTrue(
-            b'"ConfPath":"/etc/qat-computer/conf/conf_docker.yaml"' in output
+            b'"ConfPath":"conf_docker.yaml"' in output
         )
 
     def tearDown(self) -> None:

@@ -18,7 +18,9 @@ run-fmt:
 	$(HOME)/go/bin/golines . -w
 
 start-app: setting-prepare
-	go run . compute -conf resources/conf/conf_local.yaml
+	go run . compute \
+		-conf $(PWD)/resources/conf/conf_local.yaml \
+		-compute $(PWD)/resources/compute/simple_python_repository
 
 build-app: setting-prepare
 	go build -mod=vendor

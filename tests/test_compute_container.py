@@ -23,7 +23,7 @@ class TestComputeContainer(TestCase):
 
     def test_full_endpoint(self):
         """Test full compute endpoint."""
-        self.flagcmd = "-conf /etc/qat-computer/conf/conf_docker.yaml"
+        self.flagcmd = "-conf conf_docker.yaml"
         exit_code, output = self.container.exec_run(
             cmd=f"{self.binary} {self.subcmd} {self.flagcmd}", tty=True
         )
