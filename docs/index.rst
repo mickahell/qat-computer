@@ -14,7 +14,7 @@ The source code to the project is available `on GitHub <https://github.com/micka
 Step 0: install package
 
 .. code-block:: bash
-   :caption: docker pull
+   :caption: docker_pull
 
       docker pull qatcomputer
 
@@ -22,7 +22,7 @@ Step 0: install package
 Step 1: start container
 
 .. code-block:: bash
-   :caption: docker run
+   :caption: docker_run
 
       docker run -d --rm --privileged --cgroupns=host \
         --name qatcomputer \
@@ -34,17 +34,10 @@ Step 1: start container
 Step 2: run experiment
 
 .. code-block:: bash
-   :caption docker exec
+   :caption docker_exec
 
       docker exec --tty qatcomputer \
 	      qat-computer compute -conf=conf_docker.yaml
-
-------------
-
-**Compute**
-
-Blablabla
-Blabla
 
 ------------
 
