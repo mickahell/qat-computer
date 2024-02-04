@@ -4,6 +4,9 @@
 [![QatComputer tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml)
 [![QatCMD tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml)
 
+[![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qatcomputer?label=QatComputer&style=for-the-badge)](https://hub.docker.com/r/mickahell/qatcomputer)
+[![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qatcomputer-full?label=QatComputer%20Full&style=for-the-badge)](https://hub.docker.com/r/mickahell/qatcomputer-full)
+
 <!--
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/mickahell/qat-computer)](https://github.com/mickahell/qat-computer/releases)
 [![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qat-computer?label=QatComputer&style=for-the-badge)](https://hub.docker.com/r/mickahell/qat-computer)
