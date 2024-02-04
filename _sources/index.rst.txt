@@ -1,6 +1,7 @@
-.. image:: /images/DockerGopher.png
+#.. image:: /images/DockerGopher.png
 
-*Docker & Go image by github.com/ashleymcnamara/gophers*
+#*Docker & Go image by github.com/ashleymcnamara/gophers*
+*QatComputer*
 
 QatComputer is base docker image for Qiskit.
 
@@ -12,31 +13,31 @@ The source code to the project is available `on GitHub <https://github.com/micka
 
 Step 0: install package
 
-.. code-block::
-   :caption: docker pull
+.. code-block:: bash
+   :caption: docker_pull
 
       docker pull qatcomputer
 
 
-Step 1: run experiment
+Step 1: start container
 
 .. code-block:: bash
-   :caption: bash.sh
+   :caption: docker_run
 
-    docker run --rm \
-		--name qatcomputer \
-		-v ./qat_computer/resources/conf:/etc/qat-computer/conf \
-		-v ./qat_computer/resources/compute:/etc/qat-computer/compute \
-		qatcomputer:latest \
-		compute -conf=/etc/qat-computer/conf/conf_docker.yaml
+      docker run -d --rm --privileged --cgroupns=host \
+        --name qatcomputer \
+        -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+        -v $(PWD)/qat_computer/resources/conf:/etc/qat-computer/conf \
+        -v $(PWD)/qat_computer/resources/compute:/etc/qat-computer/compute \
+        qatcomputer:latest
 
+Step 2: run experiment
 
-------------
+.. code-block:: bash
+   :caption: docker_exec
 
-**Compute**
-
-Blablabla
-Blabla
+      docker exec --tty qatcomputer \
+	      qat-computer compute -conf=conf_docker.yaml
 
 ------------
 

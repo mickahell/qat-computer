@@ -3,17 +3,18 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="How-To Guides" href="guides/index.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Guide: Run your experiment with the QatComputer" href="02_qatcomputer_experiment.html" /><link rel="prev" title="How-To Guides" href="index.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19 -->
-        <title>QatComputer 0.0.0</title>
-      <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=82a976d7" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
-    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/furo-extensions.css?v=36a5483c" />
+        <title>Guide: Docker base image - QatComputer 0.0.0</title>
+      <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=82a976d7" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-code-cells.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
 
@@ -40,7 +41,7 @@
   }
 </style><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
-<script src="_static/js/web-components/top-nav-bar.js"></script></head>
+<script src="../_static/js/web-components/top-nav-bar.js"></script></head>
   <body>
     
     <script>document.body.dataset.theme = "light";</script>
@@ -144,7 +145,7 @@
       </label>
     </div>
     <div class="header-center">
-      <a href="#"><div class="brand">QatComputer 0.0.0</div></a>
+      <a href="../index.html"><div class="brand">QatComputer 0.0.0</div></a>
     </div>
     <div class="header-right">
       <div class="theme-toggle-container theme-toggle-header">
@@ -155,7 +156,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -167,25 +168,25 @@
       <div class="sidebar-sticky"><div class="sidebar-brand">
   <a href="https://www.qiskit.org/ecosystem">
     <div class="sidebar-logo-container">
-      <img class="sidebar-logo" src="_static/images/ecosystem-logo.svg" alt="Qiskit Ecosystem logo"/>
+      <img class="sidebar-logo" src="../_static/images/ecosystem-logo.svg" alt="Qiskit Ecosystem logo"/>
     </div>
   </a>
   
   <span class="sidebar-brand-text">QatComputer 0.0.0</span>
-</div><form class="sidebar-search-container" method="get" action="search.html" role="search">
+</div><form class="sidebar-search-container" method="get" action="../search.html" role="search">
   <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
   <input type="hidden" name="check_keywords" value="yes">
   <input type="hidden" name="area" value="default">
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
-  <ul class="current">
-<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Documentation Home</a></li>
+  <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation Home</a></li>
 </ul>
-<ul>
-<li class="toctree-l1 has-children"><a class="reference internal" href="guides/index.html">Guides</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/01_docker_base_image.html">Guide: Docker base image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/02_qatcomputer_experiment.html">Guide: Run your experiment with the QatComputer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/03_qat_cmd.html">Guide: QatCommand Docker controller</a></li>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Guide: Docker base image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_qatcomputer_experiment.html">Guide: Run your experiment with the QatComputer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_qat_cmd.html">Guide: QatCommand Docker controller</a></li>
 </ul>
 </li>
 </ul>
@@ -214,78 +215,71 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <p>#.. image:: /images/DockerGopher.png</p>
-<p>#*Docker &amp; Go image by github.com/ashleymcnamara/gophers*
-<em>QatComputer</em></p>
-<p>QatComputer is base docker image for Qiskit.</p>
-<p>The source code to the project is available <a class="reference external" href="https://github.com/mickahell/qat-computer">on GitHub</a>.</p>
-<hr class="docutils" />
-<p><strong>Quickstart</strong></p>
-<p>Step 0: install package</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">docker_pull</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span>pull<span class="w"> </span>qatcomputer
+          <section id="Guide:-Docker-base-image">
+<h1>Guide: Docker base image<a class="headerlink" href="#Guide:-Docker-base-image" title="Link to this heading">#</a></h1>
+<p>In this guide we will show you how to use the docker image to start and use your container.</p>
+<section id="Build-the-image">
+<h2>Build the image<a class="headerlink" href="#Build-the-image" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">FULL</span><span class="o">=</span>False<span class="w"> </span>--file<span class="w"> </span>docker/Dockerfile<span class="w"> </span>--tag<span class="w"> </span>qatcomputer:latest
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">FULL</span></code> is aim to install any external Qiskit’s modules : - qiskit-nature - qiskit-finance - qiskit-optimization - qiskit-machine-learning</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
 </pre></div>
 </div>
 </div>
-<p>Step 1: start container</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-number">Listing 2 </span><span class="caption-text">docker_run</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--privileged<span class="w"> </span>--cgroupns<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>--name<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>-v<span class="w"> </span>/sys/fs/cgroup:/sys/fs/cgroup:rw<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>-v<span class="w"> </span><span class="k">$(</span>PWD<span class="k">)</span>/qat_computer/resources/conf:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>-v<span class="w"> </span><span class="k">$(</span>PWD<span class="k">)</span>/qat_computer/resources/compute:/etc/qat-computer/compute<span class="w"> </span><span class="se">\</span>
-<span class="w">     </span>qatcomputer:latest
+</section>
+<section id="Use-in-Dockerfile">
+<h2>Use in Dockerfile<a class="headerlink" href="#Use-in-Dockerfile" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM<span class="w"> </span>qatcomputer:latest
 </pre></div>
 </div>
-</div>
-<p>Step 2: run experiment</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-number">Listing 3 </span><span class="caption-text">docker_exec</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--tty<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
-<span class="w">           </span>qat-computer<span class="w"> </span>compute<span class="w"> </span>-conf<span class="o">=</span>conf_docker.yaml
+<p>Using the image as base for your Dockerfile, avoid to re-install every packages need for Qiskt and base Quantum programming.</p>
+</section>
+<section id="Pull-from-DockerHub">
+<h2>Pull from DockerHub<a class="headerlink" href="#Pull-from-DockerHub" title="Link to this heading">#</a></h2>
+<p>The image is also available in classical and full version in the DockerHub.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer:latest
+docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer-full:latest
 </pre></div>
 </div>
-</div>
-<hr class="docutils" />
-<p><strong>Content</strong></p>
-<div class="toctree-wrapper compound">
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation Home</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="guides/index.html">Guides</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/01_docker_base_image.html">Guide: Docker base image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/02_qatcomputer_experiment.html">Guide: Run your experiment with the QatComputer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/03_qat_cmd.html">Guide: QatCommand Docker controller</a></li>
-</ul>
-</li>
-</ul>
-</div>
+</section>
+</section>
 
         </article>
       </div>
       <footer>
         <div class="related-pages">
-          <a class="next-page" href="guides/index.html">
+          <a class="next-page" href="02_qatcomputer_experiment.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">How-To Guides</div>
+                <div class="title">Guide: Run your experiment with the QatComputer</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          
+          <a class="prev-page" href="index.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">How-To Guides</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -304,22 +298,45 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Guide: Docker base image</a><ul>
+<li><a class="reference internal" href="#Build-the-image">Build the image</a></li>
+<li><a class="reference internal" href="#Use-in-Dockerfile">Use in Dockerfile</a></li>
+<li><a class="reference internal" href="#Pull-from-DockerHub">Pull from DockerHub</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
   </div>
-</div><script src="_static/jquery.js?v=5d32c60e"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-    <script src="_static/documentation_options.js?v=7026087e"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="_static/copybutton.js?v=f281be69"></script>
-    <script src="_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
+</div><script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=7026087e"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/qiskit-sphinx-theme.js?v=4d77b8ca"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>

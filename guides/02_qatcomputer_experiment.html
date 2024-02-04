@@ -3,17 +3,16 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Guide: Docker base image" href="01_docker_base_image.html" /><link rel="prev" title="&lt;no title&gt;" href="../index.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Guide: QatCommand Docker controller" href="03_qat_cmd.html" /><link rel="prev" title="Guide: Docker base image" href="01_docker_base_image.html" />
 
     <!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19 -->
-        <title>How-To Guides - QatComputer 0.0.0</title>
+        <title>Guide: Run your experiment with the QatComputer - QatComputer 0.0.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=82a976d7" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/qiskit-sphinx-theme.css?v=fe84956c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/qiskit-ecosystem.css?v=745c5aa7" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/nbsphinx-gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=36a5483c" />
     
     
@@ -156,7 +155,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -183,9 +182,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../index.html">Documentation Home</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="index.html">Guides</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle navigation of Guides</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="01_docker_base_image.html">Guide: Docker base image</a></li>
-<li class="toctree-l2"><a class="reference internal" href="02_qatcomputer_experiment.html">Guide: Run your experiment with the QatComputer</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Guide: Run your experiment with the QatComputer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_qat_cmd.html">Guide: QatCommand Docker controller</a></li>
 </ul>
 </li>
@@ -215,53 +214,123 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="how-to-guides">
-<h1>How-To Guides<a class="headerlink" href="#how-to-guides" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
-<div class="nbsphinx-gallery">
-<a class="reference internal" href="01_docker_base_image.html">
-  <div><img alt="" src="../_static/images/logo.png"></div>
-  <div>Guide: Docker base image</div>
-</a>
-<a class="reference internal" href="02_qatcomputer_experiment.html">
-  <div><img alt="" src="../_static/images/logo.png"></div>
-  <div>Guide: Run your experiment with the QatComputer</div>
-</a>
-<a class="reference internal" href="03_qat_cmd.html">
-  <div><img alt="" src="../_static/images/logo.png"></div>
-  <div>Guide: QatCommand Docker controller</div>
-</a>
+          <section id="Guide:-Run-your-experiment-with-the-QatComputer">
+<h1>Guide: Run your experiment with the QatComputer<a class="headerlink" href="#Guide:-Run-your-experiment-with-the-QatComputer" title="Link to this heading">#</a></h1>
+<p>QatComputer is an internal tool to the Docker image who aim to run your program directly inside the container.</p>
+<section id="Start-the-container">
+<h2>Start the container<a class="headerlink" href="#Start-the-container" title="Link to this heading">#</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--privileged<span class="w"> </span>--cgroupns<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/sys/fs/cgroup:/sys/fs/cgroup:rw<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>conf:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>my_super_project:/etc/qat-computer/compute<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qatcomputer:latest
+</pre></div>
 </div>
+<p>In order to the tool works correctly you need : - (Optional) Be in priviledge mode and host network mode - (Optional) Link your cgroup - (Optional) Link your project conf - Link your project to the compute folder inside the image</p>
+</section>
+<section id="Run-your-program">
+<h2>Run your program<a class="headerlink" href="#Run-your-program" title="Link to this heading">#</a></h2>
+<p>Last step to run your experiment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--tty<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>qat-computer<span class="w"> </span>compute<span class="w"> </span>-conf<span class="o">=</span>conf_docker.yaml
+</pre></div>
 </div>
+</section>
+<section id="Configuration">
+<h2>Configuration<a class="headerlink" href="#Configuration" title="Link to this heading">#</a></h2>
+<p>Parameters can be given as docker extra parameters. A configuration file is also available with every parameters :</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="c1"># log</span>
+<span class="c1">## 0 : Informational</span>
+<span class="c1">## 1 : Warning</span>
+<span class="c1">## 2 : Error --&gt; Always</span>
+<span class="c1">## 3 : Critical --&gt; Always</span>
+<span class="nt">loglevel</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">   </span><span class="c1"># Optionnal</span>
+<span class="nt">debian_packages</span><span class="p">:</span><span class="w">   </span><span class="c1"># Optionnal</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;jq&quot;</span>
+<span class="nt">python_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;python3.10&quot;</span><span class="w">   </span><span class="c1"># Optionnal</span>
+<span class="nt">compute_path</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;simple_python_repository&quot;</span><span class="w">   </span><span class="c1"># Path inside the compute folder</span>
+<span class="nt">filename_to_execute</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;main.py&quot;</span>
+<span class="nt">requirements_file</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;requirements.txt&quot;</span><span class="w">   </span><span class="c1"># Optionnal</span>
+</pre></div>
+</div>
+</section>
+<section id="References">
+<h2>References<a class="headerlink" href="#References" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Helper of the main endpoint :</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>/var/folders/1k/slg506kj1_s78lck13bgyvdm0000gn/T/go-build2129210398/b001/exe/qat-computer<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>argument<span class="w"> </span>...
+<span class="w">  </span>-conf<span class="w"> </span>string
+<span class="w">        </span>Path<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>yaml<span class="w"> </span>file.
+<span class="w">        </span>The<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span>can<span class="w"> </span>contains<span class="w"> </span>any<span class="w"> </span>options<span class="w"> </span>presented.
+<span class="w">  </span>-os-version
+<span class="w">        </span>print<span class="w"> </span>os<span class="w"> </span>version.
+<span class="w">  </span>-qiskit-version
+<span class="w">        </span>print<span class="w"> </span>qiskit<span class="w"> </span>version.
+<span class="w">  </span>-show-config
+<span class="w">        </span>print<span class="w"> </span>config.
+<span class="w">  </span>-version
+<span class="w">        </span>print<span class="w"> </span>version.
+Sub-commands<span class="w"> </span>available<span class="w"> </span>:
+<span class="w"> </span>compute
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Helper of the compute endpoint :</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage<span class="w"> </span>of<span class="w"> </span>compute:
+<span class="w">  </span>-compute<span class="w"> </span>string
+<span class="w">        </span>Path<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>project<span class="w"> </span>to<span class="w"> </span>compute.
+<span class="w">  </span>-conf<span class="w"> </span>string
+<span class="w">        </span>Path<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>yaml<span class="w"> </span>file.
+<span class="w">        </span>The<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span>can<span class="w"> </span>contains<span class="w"> </span>any<span class="w"> </span>options<span class="w"> </span>presented.
+<span class="w">  </span>-debian-pkg<span class="w"> </span>string
+<span class="w">        </span>List<span class="w"> </span>of<span class="w"> </span>debian<span class="w"> </span>package<span class="w"> </span>to<span class="w"> </span>install.
+<span class="w">  </span>-file_exe<span class="w"> </span>string
+<span class="w">        </span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>compute<span class="w"> </span>the<span class="w"> </span>project.<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;main.py&quot;</span><span class="o">)</span>
+<span class="w">  </span>-log-level<span class="w"> </span>int
+<span class="w">        </span>level<span class="w"> </span>of<span class="w"> </span>log<span class="w"> </span>to<span class="w"> </span>print<span class="w"> </span>:
+<span class="w">        </span><span class="m">0</span><span class="w"> </span>:<span class="w"> </span>Informational<span class="w"> </span><span class="o">(</span>default<span class="w"> </span>value<span class="o">)</span>
+<span class="w">        </span><span class="m">1</span><span class="w"> </span>:<span class="w"> </span>Warning
+<span class="w">        </span><span class="m">2</span><span class="w"> </span>:<span class="w"> </span>Error<span class="w"> </span>--&gt;<span class="w"> </span>Always<span class="w"> </span>shown
+<span class="w">        </span><span class="m">3</span><span class="w"> </span>:<span class="w"> </span>Critical<span class="w"> </span>--&gt;<span class="w"> </span>Always<span class="w"> </span>shown
+<span class="w">  </span>-python-version<span class="w"> </span>string
+<span class="w">        </span>Version<span class="w"> </span>of<span class="w"> </span>python<span class="w"> </span>to<span class="w"> </span>use.<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="s2">&quot;python3&quot;</span><span class="o">)</span>
+<span class="w">  </span>-requirements<span class="w"> </span>string
+<span class="w">        </span>Name<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>requirements<span class="w"> </span>file<span class="w"> </span>to<span class="w"> </span>setup<span class="w"> </span>the<span class="w"> </span>project.
+</pre></div>
+</div>
+</section>
 </section>
 
         </article>
       </div>
       <footer>
         <div class="related-pages">
-          <a class="next-page" href="01_docker_base_image.html">
+          <a class="next-page" href="03_qat_cmd.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Guide: Docker base image</div>
+                <div class="title">Guide: QatCommand Docker controller</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="../index.html">
+          <a class="prev-page" href="01_docker_base_image.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Home</div>
+                <div class="title">Guide: Docker base image</div>
                 
               </div>
             </a>
@@ -283,8 +352,30 @@
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Guide: Run your experiment with the QatComputer</a><ul>
+<li><a class="reference internal" href="#Start-the-container">Start the container</a></li>
+<li><a class="reference internal" href="#Run-your-program">Run your program</a></li>
+<li><a class="reference internal" href="#Configuration">Configuration</a></li>
+<li><a class="reference internal" href="#References">References</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
@@ -300,5 +391,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     </body>
 </html>
