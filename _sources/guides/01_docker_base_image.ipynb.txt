@@ -29,18 +29,6 @@
    ]
   },
   {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "71154cac",
-   "metadata": {
-    "vscode": {
-     "languageId": "plaintext"
-    }
-   },
-   "outputs": [],
-   "source": []
-  },
-  {
    "cell_type": "markdown",
    "id": "37d2c93e",
    "metadata": {},
