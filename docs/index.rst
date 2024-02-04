@@ -34,7 +34,7 @@ Step 1: start container
 Step 2: run experiment
 
 .. code-block:: bash
-   :caption docker_exec
+   :caption: docker_exec
 
       docker exec --tty qatcomputer \
 	      qat-computer compute -conf=conf_docker.yaml
