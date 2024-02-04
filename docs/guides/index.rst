@@ -2,7 +2,7 @@
 How-To Guides
 #############
 
-#.. nbgallery::
-#   :glob:
-#
-#   *
+.. nbgallery::
+   :glob:
+
+   *
