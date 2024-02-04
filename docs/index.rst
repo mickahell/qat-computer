@@ -1,6 +1,3 @@
-#.. image:: /images/DockerGopher.png
-
-#*Docker & Go image by github.com/ashleymcnamara/gophers*
 *QatComputer*
 
 QatComputer is base docker image for Qiskit.
@@ -25,11 +22,11 @@ Step 1: start container
    :caption: docker_run
 
       docker run -d --rm --privileged --cgroupns=host \
-        --name qatcomputer \
-        -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-        -v $(PWD)/qat_computer/resources/conf:/etc/qat-computer/conf \
-        -v $(PWD)/qat_computer/resources/compute:/etc/qat-computer/compute \
-        qatcomputer:latest
+         --name qatcomputer \
+         -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
+         -v $(PWD)/qat_computer/resources/conf:/etc/qat-computer/conf \
+         -v $(PWD)/qat_computer/resources/compute:/etc/qat-computer/compute \
+         qatcomputer:latest
 
 Step 2: run experiment
 
