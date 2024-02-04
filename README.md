@@ -75,10 +75,16 @@ In order to start the image and make the internal tool available :
 docker run -d --rm --privileged --cgroupns=host \
 	--name qatcomputer \
 	-v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-	-v $(PWD)/qat_computer/resources/conf:/etc/qat-computer/conf \
-	-v $(PWD)/qat_computer/resources/compute:/etc/qat-computer/compute \
+	-v my_conf_folder:/etc/qat-computer/conf \
+	-v my_super_project:/etc/qat-computer/compute \
 	qatcomputer:latest
 ```
+
+In order to the tool works correctly you need :
+- (Optional) Be in priviledge mode and host network mode
+- (Optional) Link your cgroup
+- (Optional) Link your project conf
+- Link your project to the compute folder inside the image
 
 And run the tool :
 
