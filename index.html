@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="genindex.html" /><link rel="search" title="Search" href="search.html" /><link rel="next" title="How-To Guides" href="guides/index.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19 -->
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>QatComputer 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=82a976d7" />
@@ -228,7 +228,7 @@
 <p>Step 0: install package</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">docker_pull</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span>pull<span class="w"> </span>qatcomputer
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer
 </pre></div>
 </div>
 </div>
@@ -238,9 +238,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--privileged<span class="w"> </span>--cgroupns<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>--name<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
 <span class="w">      </span>-v<span class="w"> </span>/sys/fs/cgroup:/sys/fs/cgroup:rw<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-v<span class="w"> </span><span class="k">$(</span>PWD<span class="k">)</span>/qat_computer/resources/conf:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>-v<span class="w"> </span><span class="k">$(</span>PWD<span class="k">)</span>/qat_computer/resources/compute:/etc/qat-computer/compute<span class="w"> </span><span class="se">\</span>
-<span class="w">      </span>qatcomputer:latest
+<span class="w">      </span>-v<span class="w"> </span>my_conf_folder:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>-v<span class="w"> </span>my_super_project:/etc/qat-computer/compute<span class="w"> </span><span class="se">\</span>
+<span class="w">      </span>mickahell/qatcomputer:latest
 </pre></div>
 </div>
 </div>

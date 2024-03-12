@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Guide: QatCommand Docker controller" href="03_qat_cmd.html" /><link rel="prev" title="Guide: Docker base image" href="01_docker_base_image.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2023.08.19 -->
+    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
         <title>Guide: Run your experiment with the QatComputer - QatComputer 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=82a976d7" />
@@ -228,9 +228,9 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--rm<span class="w"> </span>--privileged<span class="w"> </span>--cgroupns<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>--name<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-v<span class="w"> </span>/sys/fs/cgroup:/sys/fs/cgroup:rw<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-v<span class="w"> </span>conf:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>my_conf_folder:/etc/qat-computer/conf<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-v<span class="w"> </span>my_super_project:/etc/qat-computer/compute<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>qatcomputer:latest
+<span class="w">    </span>mickahell/qatcomputer:latest
 </pre></div>
 </div>
 <p>In order to the tool works correctly you need : - (Optional) Be in priviledge mode and host network mode - (Optional) Link your cgroup - (Optional) Link your project conf - Link your project to the compute folder inside the image</p>
@@ -239,7 +239,7 @@
 <h2>Run your program<a class="headerlink" href="#Run-your-program" title="Link to this heading">#</a></h2>
 <p>Last step to run your experiment</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--tty<span class="w"> </span>qatcomputer<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>qat-computer<span class="w"> </span>compute<span class="w"> </span>-conf<span class="o">=</span>conf_docker.yaml
+<span class="w">    </span>qat-computer<span class="w"> </span>compute<span class="w"> </span>-conf<span class="o">=</span>conf.yaml
 </pre></div>
 </div>
 </section>
@@ -266,7 +266,7 @@
 <ul class="simple">
 <li><p>Helper of the main endpoint :</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>/var/folders/1k/slg506kj1_s78lck13bgyvdm0000gn/T/go-build2129210398/b001/exe/qat-computer<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>argument<span class="w"> </span>...
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Usage:<span class="w"> </span>qat-computer<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>argument<span class="w"> </span>...
 <span class="w">  </span>-conf<span class="w"> </span>string
 <span class="w">        </span>Path<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>configuration<span class="w"> </span>yaml<span class="w"> </span>file.
 <span class="w">        </span>The<span class="w"> </span>configuration<span class="w"> </span>file<span class="w"> </span>can<span class="w"> </span>contains<span class="w"> </span>any<span class="w"> </span>options<span class="w"> </span>presented.
