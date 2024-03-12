@@ -1,21 +1,21 @@
 # Qat Computer
 
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/mickahell/qat-computer)](https://github.com/mickahell/qat-computer/releases)
+
 [![Python tests](https://github.com/mickahell/qat-computer/actions/workflows/python.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/python.yaml)
 [![QatComputer tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml)
 [![QatCMD tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml)
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qatcomputer?label=QatComputer&style=for-the-badge)](https://hub.docker.com/r/mickahell/qatcomputer)
-[![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qatcomputer-full?label=QatComputer%20Full&style=for-the-badge)](https://hub.docker.com/r/mickahell/qatcomputer-full)
+[![Docker Pulls Full](https://img.shields.io/docker/pulls/mickahell/qatcomputer-full?label=QatComputer%20Full&style=for-the-badge)](https://hub.docker.com/r/mickahell/qatcomputer-full)
 
-<!--
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/mickahell/qat-computer)](https://github.com/mickahell/qat-computer/releases)
-[![Docker Pulls](https://img.shields.io/docker/pulls/mickahell/qat-computer?label=QatComputer&style=for-the-badge)](https://hub.docker.com/r/mickahell/qat-computer)
--->
+[![Qiskit](https://img.shields.io/badge/Qiskit-%E2%89%A5%201.0.0-6133BD)](https://github.com/Qiskit/qiskit)
+[![License](https://img.shields.io/github/license/qiskit-community/quantum-prototype-template?label=License)](https://github.com/IceKhan13/purplecaffeine/blob/main/LICENSE)
 
 The project is aimed to create a Qiskit base docker image to use as base for any quantum application using Qiskit.
 The image also contains the tool `QatComputer` who allows you to run a python project directly inside the container as a `run as you go`.
 
-Full documentation available at [QatComputer docs](https://mickahell.github.io/qatcomputer/).
+Full documentation available at [QatComputer docs](https://mickahell.github.io/qat-computer/).
 
 ## Prerequisites
 
@@ -50,6 +50,14 @@ if you want to build your own image :
 docker build . --build-arg FULL=False --file docker/Dockerfile --tag qatcomputer:latest
 ```
 
+### Pull
+
+The image is available in the DockerHub :
+
+```bash
+docker pull mickahell/qatcomputer
+```
+
 ### Compute
 
 Parameters for the tool can be given as docker extra parameters. A configuration file is also available with every parameters :
@@ -77,7 +85,7 @@ docker run -d --rm --privileged --cgroupns=host \
 	-v /sys/fs/cgroup:/sys/fs/cgroup:rw \
 	-v my_conf_folder:/etc/qat-computer/conf \
 	-v my_super_project:/etc/qat-computer/compute \
-	qatcomputer:latest
+	mickahell/qatcomputer:latest
 ```
 
 In order to the tool works correctly you need :
@@ -90,5 +98,5 @@ And run the tool :
 
 ```bash
 docker exec --tty qatcomputer \
-	qat-computer compute -conf=conf_docker.yaml
+	qat-computer compute -conf=conf.yaml
 ```
