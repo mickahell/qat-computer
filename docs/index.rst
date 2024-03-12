@@ -13,7 +13,7 @@ Step 0: install package
 .. code-block:: bash
    :caption: docker_pull
 
-      docker pull qatcomputer
+      docker pull mickahell/qatcomputer
 
 
 Step 1: start container
@@ -24,9 +24,9 @@ Step 1: start container
       docker run -d --rm --privileged --cgroupns=host \
          --name qatcomputer \
          -v /sys/fs/cgroup:/sys/fs/cgroup:rw \
-         -v $(PWD)/qat_computer/resources/conf:/etc/qat-computer/conf \
-         -v $(PWD)/qat_computer/resources/compute:/etc/qat-computer/compute \
-         qatcomputer:latest
+         -v my_conf_folder:/etc/qat-computer/conf \
+         -v my_super_project:/etc/qat-computer/compute \
+         mickahell/qatcomputer:latest
 
 Step 2: run experiment
 
