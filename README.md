@@ -17,6 +17,12 @@ The image also contains the tool `QatComputer` who allows you to run a python pr
 
 Full documentation available at [QatComputer docs](https://mickahell.github.io/qat-computer/).
 
+## Goals
+
+This project has 2 purposes :
+- Create a based docker image pre-installed with an updated version of Qiskit. In order to help with integration and deployement of Quantum apps.
+- Create a virtual environment to run and test your own project locally, serverlessly without having to configure anything or to alter your local configuration. AS everything is inside a docker env, you create, run, destroy and retry again with a clean new container again and again.
+
 ## Prerequisites
 
 - <details><summary>Linux</summary>
