@@ -5,7 +5,7 @@
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Guide: Run your experiment with the QatComputer" href="02_qatcomputer_experiment.html" /><link rel="prev" title="How-To Guides" href="index.html" />
 
-    <!-- Generated with Sphinx 7.2.6 and Furo 2024.01.29 -->
+    <!-- Generated with Sphinx 7.3.7 and Furo 2024.01.29 -->
         <title>Guide: Docker base image - QatComputer 0.1.0</title>
       <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=135e06be" />
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=82a976d7" />
@@ -221,24 +221,24 @@
         </div>
         <article role="main">
           <section id="Guide:-Docker-base-image">
-<h1>Guide: Docker base image<a class="headerlink" href="#Guide:-Docker-base-image" title="Link to this heading">#</a></h1>
+<h1>Guide: Docker base image<a class="headerlink" href="#Guide:-Docker-base-image" title="Link to this heading">¶</a></h1>
 <p>In this guide we will show you how to use the docker image to start and use your container.</p>
 <section id="Build-the-image">
-<h2>Build the image<a class="headerlink" href="#Build-the-image" title="Link to this heading">#</a></h2>
+<h2>Build the image<a class="headerlink" href="#Build-the-image" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>build<span class="w"> </span>.<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">FULL</span><span class="o">=</span>False<span class="w"> </span>--file<span class="w"> </span>docker/Dockerfile<span class="w"> </span>--tag<span class="w"> </span>qatcomputer:latest
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">FULL</span></code> is aim to install any external Qiskit’s modules : - qiskit-nature - qiskit-finance - qiskit-optimization - qiskit-machine-learning</p>
 </section>
 <section id="Use-in-Dockerfile">
-<h2>Use in Dockerfile<a class="headerlink" href="#Use-in-Dockerfile" title="Link to this heading">#</a></h2>
+<h2>Use in Dockerfile<a class="headerlink" href="#Use-in-Dockerfile" title="Link to this heading">¶</a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>FROM<span class="w"> </span>qatcomputer:latest
 </pre></div>
 </div>
 <p>Using the image as base for your Dockerfile, avoid to re-install every packages need for Qiskt and base Quantum programming.</p>
 </section>
 <section id="Pull-from-DockerHub">
-<h2>Pull from DockerHub<a class="headerlink" href="#Pull-from-DockerHub" title="Link to this heading">#</a></h2>
+<h2>Pull from DockerHub<a class="headerlink" href="#Pull-from-DockerHub" title="Link to this heading">¶</a></h2>
 <p>The image is also available in classical and full version in the DockerHub.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer:latest
 docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer-full:latest
@@ -319,7 +319,7 @@ docker<span class="w"> </span>pull<span class="w"> </span>mickahell/qatcomputer-
 </div><script src="../_static/jquery.js?v=5d32c60e"></script>
     <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
     <script src="../_static/documentation_options.js?v=01f34227"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
