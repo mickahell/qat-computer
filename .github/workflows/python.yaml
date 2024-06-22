@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 env:
-  PY_VERSION: 3.10
+  PY_VERSION: '3.10'
   IMAGE_NAME: "qatcomputer"
 
 jobs:
