@@ -1,5 +1,6 @@
 qiskit>=1.0.0
 qiskit-aer
+qiskit-ibm-runtime
 networkx
 numpy
 pandas
