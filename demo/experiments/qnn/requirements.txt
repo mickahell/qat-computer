@@ -1,5 +1,5 @@
 numpy
-sklearn
+sklearn-learn
 qiskit
 qiskit-algorithms
 qiskit-machine_-earning
