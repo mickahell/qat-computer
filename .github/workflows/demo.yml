@@ -1,0 +1,28 @@
+name: Demo tests
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  qubo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run demo
+        run: |
+          cd demo/
+          export CONTAINER_NAME="qubo-demo-qatcomputer"
+          make docker-start
+          make docker-compute-qubo
+
+  qnn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run demo
+        run: |
+          cd demo/
+          export CONTAINER_NAME="qnn-demo-qatcomputer"
+          make docker-start
+          make docker-compute-qnn

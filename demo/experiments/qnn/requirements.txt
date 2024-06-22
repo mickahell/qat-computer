@@ -1,0 +1,5 @@
+numpy
+sklearn
+qiskit
+qiskit-algorithms
+qiskit-machine_-earning
