@@ -2,3 +2,5 @@ qiskit-nature
 qiskit-finance
 qiskit-optimization
 qiskit-machine-learning
+qiskit-serverless
+qiskit-transpiler-service

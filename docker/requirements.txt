@@ -6,3 +6,5 @@ pandas
 scipy
 prototype-zne
 purplecaffeine
+lmfit
+circuit-knitting-toolbox
