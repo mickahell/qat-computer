@@ -2,4 +2,4 @@ numpy
 sklearn-learn
 qiskit
 qiskit-algorithms
-qiskit-machine_-earning
+qiskit-machine-learning
