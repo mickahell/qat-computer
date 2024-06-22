@@ -54,7 +54,8 @@ RUN apt install -yq --no-install-recommends \
     python3-setuptools python3-pip python3-yaml \
     software-properties-common \
     systemd systemd-cron sudo \
-    && apt clean -y
+    git \
+    && apt clean -yq
 
 RUN locale-gen en_US.UTF-8
 
