@@ -50,56 +50,8 @@ train_flattened_labels = train_labels.flatten()
 test_flattened_features = test_features.flatten()
 test_flattened_labels = test_labels.flatten()
 
-# def plot_dataset():
-#
-#    colors_feat = np.where(train_flattened_labels == 1, 'g', 'b')
-#    colors_test = np.where(test_flattened_labels == 1, 'g', 'b')
-#
-#    plt.scatter(range(len(train_flattened_features)), train_flattened_features,
-#                c=colors_feat, marker="o")
-#
-#    plt.scatter(range(len(test_flattened_features)), test_flattened_features,
-#                edgecolors=colors_test, facecolors="w", marker="o")
-#
-# plot_dataset()
-#
-# legend_elements = [
-#        plt.Line2D([0], [0], marker='o', color="g", markersize=8, label='Train Value = 1'),
-#        plt.Line2D([0], [0], marker='o', color='b', markersize=8, label='Train Value = 0'),
-#        plt.Line2D([0], [0], marker='o', color='w', markeredgecolor="g", markersize=8, label='Test Value = 1'),
-#        plt.Line2D([0], [0], marker='o', color="w", markeredgecolor="b", markersize=8, label='Test Value = 0')
-#    ]
-# plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), loc="upper left")
-# plt.show()
-
 maxiter = 20
 objective_values = []
-
-
-# callback function that draws a live plot when the .fit() method is called
-def callback_graph(_, objective_value):
-    #    clear_output(wait=True)
-    objective_values.append(objective_value)
-
-    #    plt.title("Objective function value against iteration")
-    #    plt.xlabel("Iteration")
-    #    plt.ylabel("Objective function value")
-
-    stage1_len = np.min((len(objective_values), maxiter))
-    stage1_x = np.linspace(1, stage1_len, stage1_len)
-    stage1_y = objective_values[:stage1_len]
-
-    stage2_len = np.max((0, len(objective_values) - maxiter))
-    stage2_x = np.linspace(maxiter, maxiter + stage2_len - 1, stage2_len)
-    stage2_y = objective_values[maxiter : maxiter + stage2_len]
-
-
-#    plt.plot(stage1_x, stage1_y, color="orange")
-#    plt.plot(stage2_x, stage2_y, color="purple")
-#    plt.show()
-
-
-# plt.rcParams["figure.figsize"] = (12, 6)
 
 original_optimizer = COBYLA(maxiter=maxiter)
 
@@ -109,7 +61,6 @@ initial_point = np.asarray([0.5] * ansatz.num_parameters)
 original_classifier = VQC(
     ansatz=ansatz,
     optimizer=original_optimizer,
-    callback=callback_graph,
     sampler=sampler1,
 )
 
@@ -133,12 +84,8 @@ print("Test score", loaded_classifier.score(test_features, test_labels))
 train_predicts = loaded_classifier.predict(train_features)
 test_predicts = loaded_classifier.predict(test_features)
 
-# plt.rcParams["figure.figsize"] = (6, 4)
-
 train_flattened_predicts = train_predicts.flatten()
 test_flattened_predicts = test_predicts.flatten()
-
-# plot_dataset()
 
 count_train = 0
 count_test = 0
@@ -147,7 +94,6 @@ for train_predict, train_label, train_feat in zip(
 ):
     if not np.all(train_predict == train_label):
         index = np.where(train_flattened_features == train_feat)
-        #        plt.scatter(index[0][0], train_feat, s=200,facecolors="none",edgecolors="r",linewidths=2)
         count_train += 1
 
 for test_predict, test_label, test_feat in zip(
@@ -155,16 +101,7 @@ for test_predict, test_label, test_feat in zip(
 ):
     if not np.all(test_predict == test_label):
         index = np.where(test_flattened_features == test_feat)
-        #        plt.scatter(index[0][0], test_feat, s=200,facecolors="none",edgecolors="r",linewidths=2)
         count_test += 1
-
-
-# legend_elements += [
-#    plt.Line2D([0], [0], marker='o', color="w", markersize=10, markerfacecolor='none', markeredgecolor='red', markeredgewidth=2, label='Error from QNN')
-# ]
-# plt.legend(handles=legend_elements, bbox_to_anchor=(1.05, 1), loc="upper left")
-
-# plt.show()
 
 print("Error on train values : ", count_train)
 print("Error on test values : ", count_test)

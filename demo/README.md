@@ -2,7 +2,7 @@
 
 ## Pre-requisite
 
-Be inside this folder !
+Every commands have to be launch from inside this folder !
 
 ## QUBO
 
