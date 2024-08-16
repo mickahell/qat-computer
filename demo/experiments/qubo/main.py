@@ -8,7 +8,6 @@ from qiskit_optimization.algorithms import (
 )
 from qiskit_optimization import QuadraticProgram
 from itertools import combinations
-from typing import List, Tuple
 import numpy as np
 import emoji
 import math
@@ -49,7 +48,7 @@ almost_mini = dataset.index(dataset_sort[1])
 if exact_result.x[mini] == 1 and exact_result.x[almost_mini] == 1:
     print(
         emoji.emojize(
-            "\nSame as the theorical result. \nCongratulations :party_popper: !!"
+            "\nClassical : Same as the theorical result. \nCongratulations :party_popper: !!"
         )
     )
 else:
@@ -63,7 +62,7 @@ print(qaoa_result.prettyprint())
 if qaoa_result.prettyprint() == exact_result.prettyprint():
     print(
         emoji.emojize(
-            "\nSame as the classical result. \nCongratulations :party_popper: !!"
+            "\nQAOA : Same as the classical result. \nCongratulations :party_popper: !!"
         )
     )
 else:
@@ -80,7 +79,7 @@ print(grover_result.prettyprint())
 if grover_result.prettyprint() == exact_result.prettyprint():
     print(
         emoji.emojize(
-            "\nSame as the classical result. \nCongratulations :party_popper: !!"
+            "\nGrover : Same as the classical result. \nCongratulations :party_popper: !!"
         )
     )
 else:

@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import random
 
@@ -9,7 +10,7 @@ from qiskit_algorithms.utils import algorithm_globals
 from qiskit_machine_learning.algorithms.classifiers import VQC
 
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler
 
 algorithm_globals.random_seed = 42
 sampler1 = Sampler()
@@ -69,9 +70,11 @@ original_classifier.fit(train_features, train_labels)
 print("Train score", original_classifier.score(train_features, train_labels))
 print("Test score ", original_classifier.score(test_features, test_labels))
 
-original_classifier.save("resources/vqc_classifier.model")
+res_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "resources")
 
-loaded_classifier = VQC.load("resources/vqc_classifier.model")
+original_classifier.save(os.path.join(res_path, "vqc_classifier.model"))
+
+loaded_classifier = VQC.load(os.path.join(res_path, "vqc_classifier.model"))
 loaded_classifier.warm_start = True
 loaded_classifier.neural_network.sampler = sampler2
 loaded_classifier.optimizer = COBYLA(maxiter=80)
