@@ -14,7 +14,7 @@ Hello I'm Michael ...
 ## How & features
 
 -> Container apps
--> (Fake) Systemd background apps
+-> (Fake) Initctl background apps
 -> Launcher API apps
 
 ## Cloudify quantum app

@@ -56,7 +56,7 @@ Most of the usefull commands are available in the [Docker Compose file](./docker
 if you want to build your own image :
 
 ```bash
-docker build . --build-arg FULL=False --file docker/Dockerfile --tag qatcomputer:latest
+docker build . --build-arg FULL=false --file docker/Dockerfile --tag qatcomputer:latest
 ```
 
 ### Compute
