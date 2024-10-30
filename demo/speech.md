@@ -13,7 +13,9 @@ Hello I'm Michael ...
 
 ## How & features
 
--> 
+-> Container apps
+-> (Fake) Systemd background apps
+-> Launcher API apps
 
 ## Cloudify quantum app
 
@@ -23,7 +25,7 @@ Hello I'm Michael ...
 ## Development env & testing tools
 
 -> JupyterLab / Notebook image for last quantum challenge
--> VSCode conteneur
+-> VSCode container
 -> Can be used in CI/CD (ex GitHub Actions)
 
 ## Demo

@@ -44,7 +44,9 @@ This project has 2 purposes :
 The image is available in DockerHub and can be clone with :
 
 ```bash
-docker clone ...
+docker pull mickahell/qatcomputer
+# Full
+docker pull mickahell/qatcomputer-full
 ```
 
 Most of the usefull commands are available in the [Docker Compose file](./docker-compose.yml) and in the [makefile](./makefile).
@@ -55,14 +57,6 @@ if you want to build your own image :
 
 ```bash
 docker build . --build-arg FULL=False --file docker/Dockerfile --tag qatcomputer:latest
-```
-
-### Pull
-
-The image is available in the DockerHub :
-
-```bash
-docker pull mickahell/qatcomputer
 ```
 
 ### Compute
