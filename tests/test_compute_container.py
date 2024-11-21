@@ -1,4 +1,5 @@
 """Tests for compute subcmd container."""
+
 import os
 from unittest import TestCase
 import docker

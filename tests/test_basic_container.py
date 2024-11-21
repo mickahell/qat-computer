@@ -1,4 +1,5 @@
 """Tests for basic container."""
+
 import os
 from unittest import TestCase
 import docker
@@ -72,15 +73,15 @@ class TestBasicContainer(TestCase):
         ) as vers_file:
             self.assertTrue(bytes(vers_file.read(), "utf-8") in output)
 
-#    def test_qiskit_version_endpoint(self):
-#        """Test qiskit version endpoint."""
-#        self.noflagcmd = "-qiskit-version"
-#        exit_code, output = self.container.exec_run(
-#            cmd=f"{self.binary} {self.noflagcmd}", tty=True
-#        )
-#
-#        self.assertEqual(exit_code, 0)
-#        self.assertTrue(b"qiskit" in output)
+    #    def test_qiskit_version_endpoint(self):
+    #        """Test qiskit version endpoint."""
+    #        self.noflagcmd = "-qiskit-version"
+    #        exit_code, output = self.container.exec_run(
+    #            cmd=f"{self.binary} {self.noflagcmd}", tty=True
+    #        )
+    #
+    #        self.assertEqual(exit_code, 0)
+    #        self.assertTrue(b"qiskit" in output)
 
     def test_os_version_endpoint(self):
         """Test os version endpoint."""
