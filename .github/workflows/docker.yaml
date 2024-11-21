@@ -16,7 +16,7 @@ env:
 jobs:
   docker:
     name: Build image
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       packages: write
       contents: read
@@ -24,7 +24,7 @@ jobs:
       matrix:
         img_full: ["false", "true"]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get version
         id: img-version
         run: |

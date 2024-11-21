@@ -1,0 +1,10 @@
+# log
+## 0 : Informational
+## 1 : Warning
+## 2 : Error --> Always
+## 3 : Critical --> Always
+loglevel: 0
+python_version: "python3.10"
+compute_path: "qubo"
+filename_to_execute: "main.py"
+requirements_file: "requirements.txt"

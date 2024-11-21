@@ -2,6 +2,7 @@
 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/mickahell/qat-computer)](https://github.com/mickahell/qat-computer/releases)
 
+[![Demo tests](https://github.com/mickahell/qat-computer/actions/workflows/demo.yml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/demo.yml)
 [![Python tests](https://github.com/mickahell/qat-computer/actions/workflows/python.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/python.yaml)
 [![QatComputer tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-computer.yaml)
 [![QatCMD tests](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml/badge.svg)](https://github.com/mickahell/qat-computer/actions/workflows/qat-cmd.yaml)
@@ -43,7 +44,9 @@ This project has 2 purposes :
 The image is available in DockerHub and can be clone with :
 
 ```bash
-docker clone ...
+docker pull mickahell/qatcomputer
+# Full
+docker pull mickahell/qatcomputer-full
 ```
 
 Most of the usefull commands are available in the [Docker Compose file](./docker-compose.yml) and in the [makefile](./makefile).
@@ -53,15 +56,7 @@ Most of the usefull commands are available in the [Docker Compose file](./docker
 if you want to build your own image :
 
 ```bash
-docker build . --build-arg FULL=False --file docker/Dockerfile --tag qatcomputer:latest
-```
-
-### Pull
-
-The image is available in the DockerHub :
-
-```bash
-docker pull mickahell/qatcomputer
+docker build . --build-arg FULL=false --file docker/Dockerfile --tag qatcomputer:latest
 ```
 
 ### Compute
